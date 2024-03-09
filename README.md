@@ -75,7 +75,7 @@ crecip(felem out, const felem z) {
 7. **Client Interface:** The user interface for ZK File Transfer is designed to be intuitive, allowing users to easily send and receive files securely. The cryptographic operations are handled in the background, providing a seamless experience for the user.
 
 __
-
+Anchor Solana Cli Build
 __
 
 ```curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh```
