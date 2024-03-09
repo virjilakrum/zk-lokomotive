@@ -24,6 +24,8 @@ The ZK File Transfer, process uses advanced cryptographic techniques to ensure t
 
 1. **Encryption and Decryption:** Files are encrypted using a shared secret, which is generated through a secure key exchange mechanism (e.g., Elliptic Curve Diffie-Hellman (ECDH)). This ensures that only the recipient, who possesses the corresponding secret, can decrypt and access the file.
 
+<img width="846" alt="Ekran Resmi 2024-03-09 15 57 30" src="https://github.com/virjilakrum/zk-lokomotive/assets/158029357/d8d9423f-614a-4a89-bb4e-8b9dcadb0147">
+
 2. **Zero-Knowledge Proofs for File Integrity:** To verify that a file has been transmitted without revealing its content, zero-knowledge proofs are utilized. These proofs allow the sender to prove that the file matches a publicly agreed-upon hash without disclosing the file itself.
 
 3. **Poseidon Hash for Data Integrity:** The integrity and authenticity of the file are ensured using the Poseidon hash function, a cryptographic hash function optimized for zero-knowledge proofs. This function is applied to the file before transmission, creating a digest that can be securely compared by the recipient.
