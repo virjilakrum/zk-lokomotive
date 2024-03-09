@@ -20,7 +20,7 @@ Adopting a decentralized approach to file transfer, utilizing the principles of 
 
 ## Technical Description:
 
-The ZK File Transfer process uses advanced cryptographic techniques to ensure that files are transferred securely and privately:
+The ZK File Transfer, process uses advanced cryptographic techniques to ensure that files are transferred securely and privately:
 
 1. **Encryption and Decryption:** Files are encrypted using a shared secret, which is generated through a secure key exchange mechanism (e.g., Elliptic Curve Diffie-Hellman (ECDH)). This ensures that only the recipient, who possesses the corresponding secret, can decrypt and access the file.
 
