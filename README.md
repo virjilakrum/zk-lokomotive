@@ -1,5 +1,5 @@
 # zk-Lokomotive
-File Transfer with zero-knowledge
+File Transfer on Solana with zero-knowledge
 **Security Technologies**
 
 
