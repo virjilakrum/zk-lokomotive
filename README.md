@@ -38,7 +38,7 @@ The ZK File Transfer process uses advanced cryptographic techniques to ensure th
 
 7. **Client Interface:** The user interface for ZK File Transfer is designed to be intuitive, allowing users to easily send and receive files securely. The cryptographic operations are handled in the background, providing a seamless experience for the user.
 
-
+__
 
 ```curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh```
 
