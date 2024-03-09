@@ -20,6 +20,24 @@ a:hover button {
   cursor: pointer;
   color: white;
 }
+.header {
+  text-align: center;
+}
+
+.wallet-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0080ff; /* veya başka bir renk seçebilirsiniz */
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 999; /* Diğer öğelerin üzerine çıkmasını sağlar */
+}
+
+.wallet-button:hover {
+  background-color: #0058a1; /* Hover efekti için başka bir renk seçebilirsiniz */
+}
 
 button,
 .button {

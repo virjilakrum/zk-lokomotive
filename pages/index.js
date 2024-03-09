@@ -12,7 +12,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-
       <main>
         <div className="header">
           <img className="solana" src="/images/solana.svg" />
@@ -20,6 +19,7 @@ export default function Home() {
             title="zk-Lokomotive"
             text="File Transfer with zero-knowledge"
           />
+          <button className="wallet-button">Wallet Connection</button>
         </div>
         <a
           href="https://github.com/virjilakrum/zk-lokomotive"
