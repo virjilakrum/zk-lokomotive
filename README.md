@@ -40,6 +40,8 @@ The ZK File Transfer process uses advanced cryptographic techniques to ensure th
 
 __
 
+__
+
 ```curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh```
 
 ```rustc --version```
