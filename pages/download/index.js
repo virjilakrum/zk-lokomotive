@@ -47,7 +47,7 @@ export default class index extends Component {
           </Head>
 
           <main>
-            <h2>Your code</h2>
+            <h2 style={{ color: "#3cd36c" }}>Your code</h2>
             <div
               className="textInput"
               contentEditable="true"
