@@ -28,7 +28,10 @@ export default function Home() {
         >
           <button>Github zk-Lokomotive</button>
         </a>
-        <div className="fifty-grid center col-mobile pad-bottom">
+        <div
+          className="fifty-grid center col-mobile pad-bottom"
+          style={{ color: "#3cd36c" }}
+        >
           <LinkCard
             faStyles="fas fa-file-upload"
             title="Share Files on Solana ZK"
