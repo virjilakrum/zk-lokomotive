@@ -5,6 +5,21 @@ File Transfer with zero-knowledge
 
 ![diagram(37)](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/2200dc5c-ff40-4a41-ba37-51b9a9c8206b)
 
+Here's how the interaction between the two parties might work:
+
+- The receiver assigns one RSA public key
+  
+- The sender encrypts the AES symmetric cipher with this public key
+  
+- Creates a zkproof when the sender can decrypt the encrypted data
+  
+- Sends the encrypted key and zkproof to the recipient via p2p somehow **(we need to figure this out)**
+  
+- Receiver decrypts the aes key, checks the proof and reports that it is ready for file transfer
+  
+- Sender pins file on ipfs network, assigns hashi to receiver
+
+- Receiver receives the file
 
 # Architecture Definition:
 
