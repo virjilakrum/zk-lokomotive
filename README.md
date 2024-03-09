@@ -3,24 +3,7 @@ File Transfer with zero-knowledge
 **Security Technologies**
 
 
-
-```curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh```
-
-```rustc --version```
-
-```cargo install --git https://github.com/coral-xyz/anchor anchor-cli --locked```
-
-```anchor --version```
-
-```sh -c "$(curl -sSfL https://release.solana.com/v1.18.4/install)"```
-
-```solana --version```
-
-```cd tokenswap_contract```
-
-```anchor build```
-
-```anchor test```
+![diagram(37)](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/2200dc5c-ff40-4a41-ba37-51b9a9c8206b)
 
 
 # Architecture Definition:
@@ -52,3 +35,23 @@ The ZK File Transfer process uses advanced cryptographic techniques to ensure th
 6. **Peer-to-Peer Architecture:** The system operates on a peer-to-peer basis, with each participant running the ZK File Transfer client. This design supports direct, secure file transfers without intermediaries.
 
 7. **Client Interface:** The user interface for ZK File Transfer is designed to be intuitive, allowing users to easily send and receive files securely. The cryptographic operations are handled in the background, providing a seamless experience for the user.
+
+
+
+```curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh```
+
+```rustc --version```
+
+```cargo install --git https://github.com/coral-xyz/anchor anchor-cli --locked```
+
+```anchor --version```
+
+```sh -c "$(curl -sSfL https://release.solana.com/v1.18.4/install)"```
+
+```solana --version```
+
+```cd tokenswap_contract```
+
+```anchor build```
+
+```anchor test```
