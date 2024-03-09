@@ -3,6 +3,7 @@ File Transfer with zero-knowledge
 **Security Technologies**
 
 
+
 ```curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh```
 
 ```rustc --version```
@@ -11,7 +12,7 @@ File Transfer with zero-knowledge
 
 ```anchor --version```
 
-```sh -c "$(curl -sSfL https://release.solana.com/stable/install)"```
+```sh -c "$(curl -sSfL https://release.solana.com/v1.18.4/install)"```
 
 ```solana --version```
 
