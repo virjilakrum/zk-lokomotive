@@ -113,6 +113,23 @@ crecip(felem out, const felem z) {
 
 3. **Zero-Knowledge Proofs for File Integrity:** To verify that a file has been transmitted without revealing its content, zero-knowledge proofs are utilized. These proofs allow the sender to prove that the file matches a publicly agreed-upon hash without disclosing the file itself.
 
+```
+echo 'prepare phase1'
+node ../../../snarkjs/build/cli.cjs powersoftau new bn128 12 pot12_0000.ptau -v
+
+echo 'contribute phase1 first'
+node ../../../snarkjs/build/cli.cjs powersoftau contribute pot12_0000.ptau pot12_0001.ptau --name="First contribution" -v -e="random text"
+
+echo 'apply a random beacon'
+node ../../../snarkjs/build/cli.cjs powersoftau beacon pot12_0001.ptau pot12_beacon.ptau 0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f 10 -n="Final Beacon"
+
+echo 'prepare phase2'
+node ../../../snarkjs/build/cli.cjs powersoftau prepare phase2 pot12_beacon.ptau pot12_final.ptau -v
+
+echo 'Verify the final ptau'
+node ../../../snarkjs/build/cli.cjs powersoftau verify pot12_final.ptau 
+```
+
 4. **Poseidon Hash for Data Integrity:** The integrity and authenticity of the file are ensured using the Poseidon hash function, a cryptographic hash function optimized for zero-knowledge proofs. This function is applied to the file before transmission, creating a digest that can be securely compared by the recipient.
 
 ![20-Table6-1](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/6f57ca6d-f074-4106-aed1-067ab9277003)
