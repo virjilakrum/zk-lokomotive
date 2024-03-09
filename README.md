@@ -25,7 +25,38 @@ The ZK File Transfer, process uses advanced cryptographic techniques to ensure t
 1. **Encryption and Decryption:** Files are encrypted using a shared secret, which is generated through a secure key exchange mechanism (e.g., Elliptic Curve Diffie-Hellman (ECDH)). This ensures that only the recipient, who possesses the corresponding secret, can decrypt and access the file.
    
 ![Elliptic-Curve-Diffie-Hellman-ECDH-Key-Exchange-Protocol-Two-users-Alice-and-Bob](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/678ce0b9-d149-42b4-b959-937c9e753b00)
+```
+// -----------------------------------------------------------------------------
+// Eliptic Curve Diffie-Hellman [ECDH] Key Exchange Protocol
+// -----------------------------------------------------------------------------
+static void
+crecip(felem out, const felem z) {
+  felem a,t0,b,c;
 
+  /* 2 */ fsquare_times(a, z, 1); // a = 2
+  /* 8 */ fsquare_times(t0, a, 2);
+  /* 9 */ fmul(b, t0, z); // b = 9
+  /* 11 */ fmul(a, b, a); // a = 11
+  /* 22 */ fsquare_times(t0, a, 1);
+  /* 2^5 - 2^0 = 31 */ fmul(b, t0, b);
+  /* 2^10 - 2^5 */ fsquare_times(t0, b, 5);
+  /* 2^10 - 2^0 */ fmul(b, t0, b);
+  /* 2^20 - 2^10 */ fsquare_times(t0, b, 10);
+  /* 2^20 - 2^0 */ fmul(c, t0, b);
+  /* 2^40 - 2^20 */ fsquare_times(t0, c, 20);
+  /* 2^40 - 2^0 */ fmul(t0, t0, c);
+  /* 2^50 - 2^10 */ fsquare_times(t0, t0, 10);
+  /* 2^50 - 2^0 */ fmul(b, t0, b);
+  /* 2^100 - 2^50 */ fsquare_times(t0, b, 50);
+  /* 2^100 - 2^0 */ fmul(c, t0, b);
+  /* 2^200 - 2^100 */ fsquare_times(t0, c, 100);
+  /* 2^200 - 2^0 */ fmul(t0, t0, c);
+  /* 2^250 - 2^50 */ fsquare_times(t0, t0, 50);
+  /* 2^250 - 2^0 */ fmul(t0, t0, b);
+  /* 2^255 - 2^5 */ fsquare_times(t0, t0, 5);
+  /* 2^255 - 21 */ fmul(out, t0, a);
+}
+```
 ![An-example-of-ECC-version-of-Diffie-Hellman-Protocol](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/338121bb-a462-40b1-a561-034dd9010c4f)
 
 
