@@ -58,6 +58,7 @@ latest version.
 
 `cargo +nightly bench -p crypto_bench_ring` runs all the tests for [*ring*](https://github.com/briansmith/ring).
 |                                              |       *ring*       |     rust-crypto    | rust-nettle (Nettle) | rust-openssl (OpenSSL) | sodiumoxide (libsodium) | Windows CNG | Mac/iOS Common Crypto |
+|----------------------------------------------|:------------------:|:------------------:|----------------------|:----------------------:|:-----------------------:|:-----------:|:---------------------:|
 | ECDH (Suite B) key exchange                  | :white_check_mark: |                    |                      |                        |                         |             |                       |
 
 ```
