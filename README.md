@@ -153,6 +153,12 @@ https://microsoft.github.io/MixedReality-WebRTC/versions/release/1.0/manual/hell
 
 8. **Client Interface:** The user interface for ZK File Transfer is designed to be intuitive, allowing users to easily send and receive files securely. The cryptographic operations are handled in the background, providing a seamless experience for the user.
 
+9. **Wallet Connection** The "Wallet Connection" button facilitates a secure linkage between users and their digital wallets, designed specifically for compatibility with the Solana blockchain using @solana/web3js library. Leveraging the advanced capabilities of the Phantom Wallet, this integration enables efficient management of digital assets and seamless file transactions with a person.
+
+https://docs.phantom.app/introduction/readme
+
+https://solana-labs.github.io/solana-web3.js/
+
 __
 Anchor Solana Cli Build
 __
