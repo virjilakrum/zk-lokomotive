@@ -27,7 +27,7 @@ ZK File Transfer is a secure and private method for transferring files between t
 
 ## Motivation:
 
-Traditional file transfer methods often lack sufficient privacy and security, especially when sensitive data is involved. Trust between parties cannot be assumed, particularly in remote or decentralized scenarios. Implementing file transfers on a centralized server poses risks of data breaches and privacy violations.
+Providing the amount of our data continues rapidly in the technological singularity. Traditional file formats often lack adequate privacy and security, especially when it comes to sensitive data. File services run on a central server, creating the risk of data breaches and privacy violations. We offer a different solution to this than traditional breaks, by combining the powerful capacities and polynomials of mathematics and the decentralized generality of Solana, thus challenging the trilemma.
 
 ## Solution:
 
