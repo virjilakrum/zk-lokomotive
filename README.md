@@ -1,7 +1,7 @@
 # zk-Lokomotive
 File Transfer on Solana with zero-knowledge
 **Security Technologies**
-
+Author: Baturalp Güvenç
 
 ![diagram(37)](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/2200dc5c-ff40-4a41-ba37-51b9a9c8206b)
 
@@ -160,7 +160,7 @@ https://docs.phantom.app/introduction/readme
 https://solana-labs.github.io/solana-web3.js/
 
 __
-Anchor Solana Cli Build
+*Anchor Solana Cli Build*
 __
 
 ```curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh```
@@ -180,5 +180,3 @@ __
 ```anchor build```
 
 ```anchor test```
-
-finish 11:00
