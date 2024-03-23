@@ -2,9 +2,13 @@
 File Transfer on Solana with zero-knowledge
 **Security Technologies**
 
+![logo(3)](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/d4829ff3-9d99-4a69-b8b3-a50f28d6d62d)
+
+
+
+
 Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
-![diagram(37)](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/2200dc5c-ff40-4a41-ba37-51b9a9c8206b)
 
 Here's how the interaction between the two parties might work:
 
@@ -23,6 +27,9 @@ Here's how the interaction between the two parties might work:
 - Receiver receives the file
 
 # Architecture Definition:
+
+
+![diagram(37)](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/2200dc5c-ff40-4a41-ba37-51b9a9c8206b)
 
 ZK File Transfer is a secure and private method for transferring files between two parties.
 
