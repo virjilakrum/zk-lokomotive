@@ -16,6 +16,9 @@ fn main() -> Result<()> {
     // dosya içeriği (dynamic with UI)
     let file_content: Vec<u8> = vec![1, 2, 3, 4, 5]; // example of file transfer
 
+    let client = IpfsClient::new("https://ipfs.infura.io:5001");
+        let ipfs_hash = upload_file(&client, &file_content).await?;
+
     // Reciever wallet address (dynamic with UI)
     let receiver_address = Pubkey::new_from_array(<RECEIVER_ADDRESS_ARRAY>.try_into().unwrap());
 
