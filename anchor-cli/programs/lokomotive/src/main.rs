@@ -1,30 +1,33 @@
 use anchor_lang::prelude::*;
-use multichain_transfer::MultichainTransfer;
+use multichain_transfer::{MultichainTransfer, CpiContext};
+use std::convert::TryInto;
 
 fn main() -> Result<()> {
-    // Program kimliğini ve RPC URL'sini ayarlama
-    let program_id = solana_program::id();
-    let rpc_url = "https://api.devnet.solana.com";
+    // Program ID & RPC URL
+    let program_id = Pubkey::new_from_array(<YOUR_PROGRAM_ID_ARRAY>.try_into().unwrap());
+    let rpc_url = "https://api.devnet.solana.com"; // Devnet (Example of)
 
-    // Anchor'un Solana sağlayıcısını oluşturma
+    // anchor'un solana sağlayıcısını oluşturma
     let solana_provider = anchor_lang::solana::Provider::new(rpc_url.to_string());
 
-    // Akıllı sözleşmeyle etkileşim kurmak için bir hesap oluşturma
+    // create account with solana wallet
     let payer = solana_provider.wallet();
 
-    // Akıllı sözleşmeyle etkileşim kurmak için bir komut oluşturma
-    let mut ix = anchor_lang::solana::Instruction::new_with_borsh(
-        program_id,
-        &MultichainTransfer::transfer_sol_to_eth,
-        payer.public_key(),
-        &[
-            payer.public_key().as_ref(),
-            solana_program::sysvar::clock::id(),
-        ],
-    );
+    // dosya içeriği (dynamic with UI)
+    let file_content: Vec<u8> = vec![1, 2, 3, 4, 5]; // example of file transfer
 
-    // İşlemi Solana ağına gönderme
-    solana_provider.send_and_confirm(&mut ix)?;
+    // Reciever wallet address (dynamic with UI)
+    let receiver_address = Pubkey::new_from_array(<RECEIVER_ADDRESS_ARRAY>.try_into().unwrap());
+
+    // CpiContext oluşturma
+    let accounts = MultichainTransfer {
+        bridge: payer.public_key().into(), // Sample bridge account
+        solana_wallet: payer.public_key().into(),
+    };
+    let bridge_context = CpiContext::new(program_id, accounts);
+
+    // contract call etme & starts transfer
+    multichain_transfer::transfer_sol_to_eth(bridge_context, receiver_address, &file_content)?;
 
     Ok(())
 }
