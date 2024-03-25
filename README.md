@@ -28,8 +28,9 @@ Here's how the interaction between the two parties might work:
 
 # Architecture Definition:
 
+<img width="1066" alt="diagram-1" src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/489427f8-d4fa-48d9-93a0-91bec10d5846">
 
-![diagram(37)](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/2200dc5c-ff40-4a41-ba37-51b9a9c8206b)
+
 
 ZK File Transfer is a secure and private method for transferring files between two parties.
 
