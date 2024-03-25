@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@certusone/wormhole-sdk": "^0.10.13",
     "@fortawesome/fontawesome-free": "^5.15.1",
     "archiver": "^5.0.2",
     "formidable": "^1.2.2",

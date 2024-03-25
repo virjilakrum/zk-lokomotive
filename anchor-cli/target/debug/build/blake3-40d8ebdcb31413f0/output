@@ -47,7 +47,7 @@ HOST_ARFLAGS = None
 cargo:rerun-if-env-changed=ARFLAGS
 ARFLAGS = None
 cargo:rustc-link-lib=static=blake3_neon
-cargo:rustc-link-search=native=/Users/dante/Desktop/reacthreejs/lokomotive-anchor/lokomotive/target/debug/build/blake3-40d8ebdcb31413f0/out
+cargo:rustc-link-search=native=/Users/dante/Desktop/reacthreejs/zkL/anchor-cli/target/debug/build/blake3-40d8ebdcb31413f0/out
 cargo:rerun-if-env-changed=CC
 cargo:rerun-if-env-changed=CFLAGS
 cargo:rerun-if-changed=c/blake3_sse41_x86-64_windows_msvc.asm
