@@ -1,4 +1,5 @@
 use anchor_lang::prelude::*;
+use wormhole_sdk::token_extensions::{TokenExtension, TokenExtensionClient};
 
 // Wormhole SDK Library
 use wormhole_sdk::{bridge::Bridge, solana::SolanaWallet, token::Token, types::*};
