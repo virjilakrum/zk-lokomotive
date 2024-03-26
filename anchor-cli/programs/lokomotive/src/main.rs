@@ -7,12 +7,18 @@ use wormhole_sdk::{bridge::Bridge, solana::SolanaWallet, token::Token, types::*}
 // @import ZKFile.rs
 use crate::zkfile::ZkFile;
 
-// ...(IPFS client struct'ı ve upload_file fonksiyonunu ekleyin)
+// IPFS client struct integration
+use ipfs_api::IpfsClient;
+fn upload_file(client: &IpfsClient, file_content: &[u8]) -> Result<String> {
+    let mut add_result = client.add(file_content)?;
+    Ok(add_result.hash.to_string())
+}
+
 
 fn main() -> Result<()> {
-    // Program ID & RPC URL
+    // Program ID & RPC URL (default)
     let program_id = Pubkey::new_from_array(<YOUR_PROGRAM_ID_ARRAY>.try_into().unwrap());
-    let rpc_url = "https://api.devnet.solana.com"; // Devnet (Örnek, network adresinizi değiştirin)
+    let rpc_url = "https://api.devnet.solana.com"; // Devnet (example) !!! we must have change the network address.....
 
     // Anchor Solana sağlayıcısını oluşturma
     let solana_provider = anchor_lang::solana::Provider::new(rpc_url.to_string());
