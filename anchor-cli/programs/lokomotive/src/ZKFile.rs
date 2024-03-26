@@ -72,7 +72,7 @@ pub fn load_from_file(path: &str) -> serde_json::Result<ZkFile> {
         hasher.finalize().into()
     }
 
-    // Added compression and decompression
+    // compression and decompression
 
     #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq)]
     pub struct ZkFileData {
@@ -87,7 +87,7 @@ pub fn load_from_file(path: &str) -> serde_json::Result<ZkFile> {
         ZkFileData {
             content: self.content.clone(),
             proof: self.proof.clone(),
-            file_name: "".to_string(), // Dosya adını ekleyin
+            file_name: "".to_string(), // file-name
             file_size: self.file_size(),
             hash: self.hash(),
         }
