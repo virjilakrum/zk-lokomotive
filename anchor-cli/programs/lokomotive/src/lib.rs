@@ -47,6 +47,15 @@ pub mod multichain_transfer {
 
         let instructions = vec![create_instruction];
 
+        // Sign and send transaction to create the access key account
+                let mut tx = Transaction::new_with_payer(
+                    &instructions,
+                    &Some(&payer),
+                    &[&access_key_account],
+                );
+
+                send_and_confirm_transaction(&mut tx)?;
+
         // Wormhole bridge & create Solana wallet
         let bridge = Bridge::new(ctx.accounts.bridge.to_account_info());
         let solana_wallet = SolanaWallet::new(ctx.accounts.solana_wallet.to_account_info());
