@@ -16,4 +16,7 @@ cpi = ["no-entrypoint"]
 default = []
 
 [dependencies]
+ipfs-http-client = "0.7.0"
 anchor-lang = "0.29.0"
+zkfile = "0.1.0"
+libsnark = "0.9.0"

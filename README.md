@@ -2,9 +2,13 @@
 File Transfer on Solana with zero-knowledge
 **Security Technologies**
 
+![logo(3)](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/d4829ff3-9d99-4a69-b8b3-a50f28d6d62d)
+
+
+
+
 Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
-![diagram(37)](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/2200dc5c-ff40-4a41-ba37-51b9a9c8206b)
 
 Here's how the interaction between the two parties might work:
 
@@ -23,6 +27,9 @@ Here's how the interaction between the two parties might work:
 - Receiver receives the file
 
 # Architecture Definition:
+
+<img width="1066" alt="diagram-1" src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/489427f8-d4fa-48d9-93a0-91bec10d5846">
+
 
 ZK File Transfer is a secure and private method for transferring files between two parties.
 
@@ -159,6 +166,17 @@ https://microsoft.github.io/MixedReality-WebRTC/versions/release/1.0/manual/hell
 https://docs.phantom.app/introduction/readme
 
 https://solana-labs.github.io/solana-web3.js/
+
+
+
+    The function transfer_sol_to_eth in lib.rs is used to transfer assets from Solana to Ethereum.
+    The bridge and solana_wallet variables are used to create a Wormhole bridge and Solana wallet.
+    The wormhole_sdk::transfer function is used to initiate the asset transfer.
+    The transfer_sol_to_eth function in main.rs is used for testing.
+    The solana_provider variable is used to create Anchor's Solana provider.
+    The ix variable is used to create a command to interact with the smart contract.
+    The function solana_provider.send_and_confirm is used to send the transaction to the Solana network.
+
 
 __
 *Anchor Solana Cli Build*
