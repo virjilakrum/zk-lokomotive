@@ -1,9 +1,7 @@
 use anchor_lang::prelude::*;
 use wormhole_sdk::token_extensions::{TokenExtension, TokenExtensionClient};
+use wormhole_sdk::{bridge::Bridge, solana::SolanaWallet, token::Token, types::*}; // Wormhole SDK Library
 use zkfile::ZkFile;
-
-// Wormhole SDK Library
-use wormhole_sdk::{bridge::Bridge, solana::SolanaWallet, token::Token, types::*};
 
 declare_id!("Fhip5iGYbNmDmzB9H4DUiXXEhotfzCfgqajk95Fs7FCK");
 
@@ -11,56 +9,74 @@ declare_id!("Fhip5iGYbNmDmzB9H4DUiXXEhotfzCfgqajk95Fs7FCK");
 pub mod multichain_transfer {
     use super::*;
 
-    // Function: Solana to Ethereum
+    // Function: Solana to Ethereum (with Zero Knowledge)
 
     pub fn transfer_sol_to_eth(
         ctx: Context<MultichainTransfer>,
         receiver_address: Pubkey,
         file_content: &[u8],
     ) -> Result<()> {
-        //generate zk file
-        let zk_file = ZkFile::from_bytes(file_content);
-
-        // generate proof zk file
-        let proof = zk_file.generate_proof();
-
-        // generate "Token Extension" Client
-        let token_extension_client =
-            TokenExtensionClient::new(ctx.accounts.bridge.to_account_info());
-
-        // IPFS integration
-        let client = IpfsClient::new("https://ipfs.infura.io:5001"); // node URL of IPFS
+        // IPFS Integration
+        let client = IpfsClient::new("https://ipfs.infura.io:5001"); // Infura IPFS node
         let ipfs_hash = upload_file(&client, file_content).await?;
 
-        // add IPFS hash to data content
+        // Add IPFS hash to data content
         let data = Data::from_bytes(file_content);
         data.ipfs_hash = Some(ipfs_hash);
+
+        // Create ZK file from data
+        let zk_file = ZkFile::from_bytes(&data);
+
+        // Create a new Solana account for storing the access key/token
+        let access_key_account = Keypair::new();
+        let access_key_account_pubkey = access_key_account.pubkey();
+
+        //
+        //
+        // Örnek:
+        let create_instruction = SystemInstruction::create_account(
+            &payer.pubkey(),            // Hesap oluşturma için ödeyen
+            &access_key_account_pubkey, // Oluşturulan hesap
+            lamports,                   // Hesaba aktarilan lamport miktari
+            &program_id,                // Hesap programı
+        );
+
+        //
+        //
+        //
+
+        let instructions = vec![create_instruction];
 
         // Wormhole bridge & create Solana wallet
         let bridge = Bridge::new(ctx.accounts.bridge.to_account_info());
         let solana_wallet = SolanaWallet::new(ctx.accounts.solana_wallet.to_account_info());
-        //token_address: Pubkey,
 
-        // Convert file content to Data object
-        let data = Data::from_bytes(file_content);
-
-        // Transfer with Wormhole SDK
+        // Transfer the access key to the receiver (Ethereum address)
         bridge.transfer(
             &solana_wallet,
-            &data,
-            1, // Use 1 as the transfer amount for data
+            &Token::native_sol(), // Native SOL as the token
+            1,                    // Amount of the access key (can be customized)
             "ethereum",
             receiver_address.as_ref(),
+        )?;
+
+        // Token Extension Client
+        let token_extension_client =
+            TokenExtensionClient::new(ctx.accounts.bridge.to_account_info());
+
+        // Send ZK file as token extension
+        let token_extension = TokenExtension::new(zk_file.content, zk_file.proof);
+
+        token_extension_client.transfer(
+            &solana_wallet,
+            &data, // Data object containing IPFS hash (optional)
+            1,     // Transfer amount for data
+            "ethereum",
+            receiver_address.as_ref(), // Ethereum wallet address
+            &token_extension,
         )?;
 
         Ok(())
     }
 }
-
-#[derive(Accounts)]
-pub struct MultichainTransfer {
-    #[account(mut)]
-    pub bridge: AccountInfo,
-    #[account(mut)]
-    pub solana_wallet: AccountInfo,
-}
+// ...(ZkFile.rs, MultichainTransfer struct, IPFS file upload logic remains the same)
