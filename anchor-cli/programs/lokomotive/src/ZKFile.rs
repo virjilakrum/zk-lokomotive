@@ -1,21 +1,26 @@
+use libsnark::{zk_proof, zk_verifier};
+
 struct ZkFile {
-    content: Vec<u8>, // ZK ile şifrelenmiş dosya içeriği
-    proof: Vec<u8>,   // ZK ispatı
+    content: Vec<u8>, // encryption zk
+    proof: Vec<u8>,   // zk proof
 }
 
 impl ZkFile {
-    // ZK ile dosya içeriğini şifreleyen fonksiyon
+    // file encryption zk
     fn from_bytes(file_content: &[u8]) -> Self {
-        // ... (ZK kütüphanesi ile şifreleme işlemi)
+        // zk library encryption
+        let (content, proof) = zk_proof::encrypt(file_content);
+
+        ZkFile { content, proof }
     }
 
-    // ZK ispatı oluşturan fonksiyon
+    // generate proof
     fn generate_proof(&self) -> Vec<u8> {
-        // ... (ZK kütüphanesi ile ispat oluşturma işlemi)
+        self.proof.clone()
     }
 
-    // ZK ispatını doğrulayan fonksiyon
+    // zk verifier
     fn verify_proof(&self, proof: &[u8]) -> bool {
-        // ... (ZK kütüphanesi ile ispat doğrulama işlemi)
+        zk_verifier::verify(&self.content, proof)
     }
 }
