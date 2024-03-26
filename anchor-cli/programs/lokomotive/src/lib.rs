@@ -1,5 +1,6 @@
 use anchor_lang::prelude::*;
 use wormhole_sdk::token_extensions::{TokenExtension, TokenExtensionClient};
+use zkfile::ZkFile;
 
 // Wormhole SDK Library
 use wormhole_sdk::{bridge::Bridge, solana::SolanaWallet, token::Token, types::*};
@@ -17,6 +18,16 @@ pub mod multichain_transfer {
         receiver_address: Pubkey,
         file_content: &[u8],
     ) -> Result<()> {
+        //generate zk file
+        let zk_file = ZkFile::from_bytes(file_content);
+
+        // generate proof zk file
+        let proof = zk_file.generate_proof();
+
+        // generate "Token Extension" Client
+        let token_extension_client =
+            TokenExtensionClient::new(ctx.accounts.bridge.to_account_info());
+
         // IPFS integration
         let client = IpfsClient::new("https://ipfs.infura.io:5001"); // node URL of IPFS
         let ipfs_hash = upload_file(&client, file_content).await?;
