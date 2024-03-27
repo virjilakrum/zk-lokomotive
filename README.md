@@ -272,8 +272,6 @@ https://microsoft.github.io/MixedReality-WebRTC/versions/release/1.0/manual/hell
 
 9. **Wallet Connection** The "Wallet Connection" button facilitates a secure linkage between users and their digital wallets, designed specifically for compatibility with the Solana blockchain using @solana/web3js library. Leveraging the advanced capabilities of the Phantom Wallet, this integration enables efficient management of digital assets and seamless file transactions with a person.
 
-https://docs.phantom.app/introduction/readme
-
 https://solana-labs.github.io/solana-web3.js/
 
 
