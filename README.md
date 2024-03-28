@@ -1,30 +1,138 @@
-# zk-Lokomotive
-File Transfer on Solana with zero-knowledge
-**Security Technologies**
-
+# zk-lokomotive (Multichain File Transfer System with Solana-EVM Bridge)
 ![logo(3)](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/d4829ff3-9d99-4a69-b8b3-a50f28d6d62d)
-
-
-
 
 Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
+## Introduction
 
-Here's how the interaction between the two parties might work:
+This project aims to create a secure and efficient file transfer system bridging Solana and Ethereum networks by integrating ZK, IPFS, and Wormhole. ZK ensures file integrity and privacy, IPFS facilitates file storage, and Wormhole enables cross-chain token and data transfer.
 
-- The receiver assigns one RSA public key
-  
-- The sender encrypts the AES symmetric cipher with this public key
-  
-- Creates a zkproof when the sender can decrypt the encrypted data
-  
-- Sends the encrypted key and zkproof to the recipient via p2p somehow **(we need to figure this out)**
-  
-- Receiver decrypts the aes key, checks the proof and reports that it is ready for file transfer
-  
-- Sender pins file on ipfs network, assigns hashi to receiver
 
-- Receiver receives the file
+## Scenario Secure Research File Sharing
+
+### Actors
+
+    Dr. Z: A biomedical researcher working at a prestigious university.
+    Mr. B: A collaborator working in a separate research lab at the same university.
+    "Solana(mainnet) & Ethereum" Foundation: Funding Dr. Z's research and awaiting updates on progress.
+
+### Problem
+
+Dr. Z is conducting very sensitive and experimental research on a new cancer treatment. He is asking for input from collaborating scientists (like Mr. B) before he is sure of his results. But leaking data can have serious consequences because of the intellectual property of the research and its implications for potential patent applications. In addition, the accuracy and validity of the research data needs to be proven.
+
+### Solution: Solana-Ethereum Integration with ZK File Transfer
+
+    Encryption and IPFS Upload:
+        Dr. Z encrypts important research files using the ZKFile library and creates a ZK proof.
+        The encrypted files are uploaded to IPFS and a unique IPFS hash value is generated for each file.
+
+    Solana Account Creation:
+        Dr. Z creates an account on the Solana blockchain to store the ZK file data. This account is loaded with the initial SOL tokens required for the ZK file stream.
+
+    Providing Access to the Recipient (Ethereum Foundation):
+        Dr. Z obtains the Ethereum wallet address of the Ethereum Foundation.
+        A token for access to the Solana account (SOL) is transferred to the Ethereum Foundation's address using the Wormhole bridge.
+
+    ZK File Transfer:
+        ZKFileData objects are created. These objects wrap the IPFS hash value, filename, size and ZK proof of the encrypted file.
+        ZKFileData objects are transferred to the Ethereum Foundation's wallet via Solana with Wormhole Token Extensions.
+        The Ethereum Foundation can also verify the integrity of the files through smart contract interactions on Ethereum.
+
+    Collaboration and Verification (Mr. B):
+        Mr. B's lab is also equipped with ZK proof verification tools.
+        Mr. B can use his Solana wallet to access his storage account on Solana to retrieve and inspect ZK-verified files.
+        Mr. B provides input and feedback that improves his research.
+        
+<img width="1305" alt="Ekran Resmi 2024-03-26 13 54 58" src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/b4102bda-ca1f-4ff6-bd06-ff92e6e9d73e">
+
+### Benefits:
+
+    Privacy: ZK encryption guarantees that sensitive data can only be accessed by Dr. Johnson and authorized collaborators.
+    Integrity: ZK proofs confirm that research data has not been altered in a secure environment.
+    Traceability: Solana and Ethereum blockchains provide a permanent record of transactions.
+    Trust: The protocol uses both cryptographic techniques and blockchain technology to share research data in a trusted way.
+    Wormhole Integration: Seamless communication between Solana and Ethereum allows collaborators and stakeholders to be on different blockchains.
+
+### Enhancements
+
+    Access Control: Access permission efficiency can be increased with advanced smart contracts in Solana.
+    User Interface: An easy-to-use web or mobile interface to follow the entire process.
+    Data Analytics: Analytics operations on data stored in Ethereum & Solana.
+    
+
+## Used Technologies:
+
+### Wormhole Integration
+
+```rust
+
+
+pub fn transfer_sol_to_eth(
+    ctx: CpiContext<'_, '_, '_, '_, MultichainTransfer>,
+    receiver_address: Pubkey,
+    amount: u64,
+) -> Result<()> {
+    let solana_wallet = SolanaWallet::new(ctx.accounts.connection.clone());
+    bridge.transfer(
+        &solana_wallet,
+        &Token::native_sol(),
+        amount,
+        "ethereum",
+        receiver_address.as_ref(),
+    )?;
+
+    Ok(())
+}
+```
+
+```rust
+
+pub struct ZkFile {
+    pub content: Vec<u8>, // Encrypted file content using ZK
+    pub proof: Vec<u8>, // ZK proof
+}
+
+impl ZkFile {
+    pub fn from_bytes(file_content: &[u8]) -> Self {
+        let (content, proof) = zk_proof::encrypt(file_content);
+
+        ZkFile {
+            content,
+            proof,
+        }
+    }
+
+    pub fn to_data(&self) -> ZkFileData {
+        ZkFileData {
+            content: self.content.clone(),
+            proof: self.proof.clone(),
+            ..Default::default()
+        }
+    }
+}
+```
+
+* The provided Rust struct ZkFile and its methods demonstrate the usage of ZK to encrypt and prove files' integrity. from_bytes function encrypts a file content using ZK, while to_data function converts a ZkFile object to ZkFileData format.
+
+```rust
+
+use ipfs_api::IpfsClient;
+
+fn upload_file(client: &IpfsClient, file_content: &[u8]) -> Result<String> {
+    let mut add_result = client.add(file_content)?;
+    Ok(add_result.hash.to_string())
+}
+```
+
+* The provided Rust function upload_file demonstrates the usage of IPFS-http-client to interact with IPFS. It uploads file content to IPFS and returns the IPFS hash.
+
+### Connection Overview
+
+    File content is encrypted using ZKFile, generating a ZK proof.
+    Encrypted file is uploaded to IPFS, obtaining an IPFS hash.
+    ZkFile object, IPFS hash, and other metadata are converted to ZKFileData format.
+    ZKFileData object is transferred to the recipient using Wormhole bridge.
+
 
 # Architecture Definition:
 
@@ -47,7 +155,8 @@ The ZK File Transfer, process uses advanced cryptographic techniques to ensure t
 
 1. **Encryption and Decryption:** Files are encrypted using a shared secret, which is generated through a secure key exchange mechanism (e.g., Elliptic Curve Diffie-Hellman (ECDH)). This ensures that only the recipient, who possesses the corresponding secret, can decrypt and access the file.
    
-![Elliptic-Curve-Diffie-Hellman-ECDH-Key-Exchange-Protocol-Two-users-Alice-and-Bob](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/678ce0b9-d149-42b4-b959-937c9e753b00)
+<img width="770" alt="alice-bob" src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/f105c5f3-df66-4789-b8dc-2a6101d4398f">
+
 
 > Elliptic-curve Diffie–Hellman (ECDH) is an anonymous key agreement protocol that allows two parties, each having an elliptic-curve public–private key pair, to establish a shared secret over an insecure channel. This shared secret may be directly used as a key, or to derive another key. The key, or the derived key, can then be used to encrypt subsequent communications using a symmetric-key cipher. It is a variant of the Diffie–Hellman protocol using elliptic-curve cryptography.
 `
@@ -162,8 +271,6 @@ https://microsoft.github.io/MixedReality-WebRTC/versions/release/1.0/manual/hell
 8. **Client Interface:** The user interface for ZK File Transfer is designed to be intuitive, allowing users to easily send and receive files securely. The cryptographic operations are handled in the background, providing a seamless experience for the user.
 
 9. **Wallet Connection** The "Wallet Connection" button facilitates a secure linkage between users and their digital wallets, designed specifically for compatibility with the Solana blockchain using @solana/web3js library. Leveraging the advanced capabilities of the Phantom Wallet, this integration enables efficient management of digital assets and seamless file transactions with a person.
-
-https://docs.phantom.app/introduction/readme
 
 https://solana-labs.github.io/solana-web3.js/
 
