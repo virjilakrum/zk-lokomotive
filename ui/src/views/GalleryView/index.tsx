@@ -81,9 +81,9 @@ export const GalleryView: FC = ({ }) => {
                       className="link font-bold"
                       rel="noreferrer"
                     >
-                      {/* @nfteyez/sol-rayz-react */}
+
                     </a>{" "}
-                    {/* package to fetch NFTs for specific wallet. */}
+
                   </p>
                   <div>
                     <div className="form-control mt-8">
