@@ -17,7 +17,7 @@ const endpoint = "https://explorer-api.devnet.solana.com";
 
 const connection = new anchor.web3.Connection(endpoint);
 
-export const SolanaTweeterView: FC = ({}) => {
+export const SolanaTweeterView: FC = ({ }) => {
   const [isAirDropped, setIsAirDropped] = useState(false);
   const wallet = useAnchorWallet();
 
@@ -40,7 +40,7 @@ export const SolanaTweeterView: FC = ({}) => {
         <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
           <div className="flex-none">
             <button className="btn btn-square btn-ghost">
-              <span className="text-4xl">🐦</span>
+              <span className="text-4xl"><SolanaLogo /></span>
             </button>
           </div>
           <div className="flex-1 px-2 mx-2">
@@ -48,11 +48,11 @@ export const SolanaTweeterView: FC = ({}) => {
               <ul className="text-xl">
                 <li>
                   <Link href="/">
-                    <a>Templates</a>
+                    <a>Wormhole Bridge</a>
                   </Link>
                 </li>
                 <li>
-                  <span className="opacity-40">Solana Twitter</span>
+                  <span className="opacity-40">Solana 2 EVM File Transfer</span>
                 </li>
               </ul>
             </div>
@@ -68,24 +68,24 @@ export const SolanaTweeterView: FC = ({}) => {
             <div className="text-center hero-content">
               <div className="max-w-lg">
                 <h1 className="mb-5 text-5xl">
-                  Solana Twitter <SolanaLogo />
+                  Solana 2 EVM File Transfer Bridge <SolanaLogo />
                 </h1>
 
                 <p className="mb-5">
-                  Here is simplified version of Twitter as a Solana dApp. <br />
-                  It aims to be Next.JS UI build for{" "}
+                  Here is demo version of File Transfer as a Solana dApp with Wormhole Layer Bridge. <br />
+                  {" "}
                   <a
                     href="https://lorisleiva.com/create-a-solana-dapp-from-scratch"
                     target="_blank"
                     className="link font-bold"
                     rel="noreferrer"
                   >
-                    Create a Solana dApp from scratch
+
                   </a>{" "}
-                  tutorial.
+
                 </p>
 
-                <p>UI connects to DEVNET network.</p>
+                <p></p>
               </div>
             </div>
           </div>
@@ -106,7 +106,7 @@ export const SolanaTweeterView: FC = ({}) => {
 
         <div>
           {!wallet ? (
-            <SelectAndConnectWalletButton onUseWalletClick={() => {}} />
+            <SelectAndConnectWalletButton onUseWalletClick={() => { }} />
           ) : (
             <TwitterScreen />
           )}
@@ -287,22 +287,22 @@ const Tweet = ({ content }: any) => {
   );
 };
 
-const TwitterProfile = ({ tweets, wallet }: any) => {
-  return (
-    <div className="flex-1 text-left width-full">
-      <div>Profile</div>
-      <div>{wallet.publicKey.toString()}</div>
+// const TwitterProfile = ({ tweets, wallet }: any) => {
+//   return (
+//     <div className="flex-1 text-left width-full">
+//       <div>Profile</div>
+//       <div>{wallet.publicKey.toString()}</div>
 
-      <div className="my-8">
-        {tweets.length === 0 ? (
-          <div className="text-3xl opacity-50 text-center">
-            You have no tweets
-          </div>
-        ) : null}
-        {tweets.map((t: any) => (
-          <Tweet key={t.key} content={t} />
-        ))}
-      </div>
-    </div>
-  );
-};
+//       <div className="my-8">
+//         {tweets.length === 0 ? (
+//           <div className="text-3xl opacity-50 text-center">
+//             You have no tweets
+//           </div>
+//         ) : null}
+//         {tweets.map((t: any) => (
+//           <Tweet key={t.key} content={t} />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };

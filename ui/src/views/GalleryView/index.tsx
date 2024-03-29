@@ -10,7 +10,7 @@ import { NftCard } from "./NftCard";
 import styles from "./index.module.css";
 const walletPublicKey = "3EqUrFrjgABCWAnqMYjZ36GcktiwDtFdkNYwY6C6cDzy";
 
-export const GalleryView: FC = ({}) => {
+export const GalleryView: FC = ({ }) => {
   const { connection } = useConnection();
   const [walletToParsePublicKey, setWalletToParsePublicKey] =
     useState<string>(walletPublicKey);
@@ -40,7 +40,7 @@ export const GalleryView: FC = ({}) => {
         <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
           <div className="flex-none">
             <button className="btn btn-square btn-ghost">
-              <span className="text-4xl">🏞</span>
+              <span className="text-4xl"><SolanaLogo /></span>
             </button>
           </div>
           <div className="flex-1 px-2 mx-2">
@@ -48,11 +48,11 @@ export const GalleryView: FC = ({}) => {
               <ul className="text-xl">
                 <li>
                   <Link href="/">
-                    <a>Templates</a>
+                    <a>Sol 2 Sol Transfer</a>
                   </Link>
                 </li>
                 <li>
-                  <span className="opacity-40">NFT Gallery</span>
+                  <span className="opacity-40">File History</span>
                 </li>
               </ul>
             </div>
@@ -67,28 +67,28 @@ export const GalleryView: FC = ({}) => {
             <div className="text-center hero-content w-full">
               <div className="w-full">
                 <h1 className="mb-5 text-5xl">
-                  NFT Gallery on Solana <SolanaLogo />
+                  Solana to Solana Transfer <SolanaLogo />
                 </h1>
 
                 <div className="w-full min-w-full">
                   <p className="mb-5">
-                    Here is very basic example of NFT Gallery. It parses
+                    Here is very basic usage of Solana File Transfer. It parses
                     mainnet. <br />
-                    And uses{" "}
+                    {/* And uses{" "} */}
                     <a
                       href="https://www.npmjs.com/package/@nfteyez/sol-rayz-react"
                       target="_blank"
                       className="link font-bold"
                       rel="noreferrer"
                     >
-                      @nfteyez/sol-rayz-react
+                      {/* @nfteyez/sol-rayz-react */}
                     </a>{" "}
-                    package to fetch NFTs for specific wallet.
+                    {/* package to fetch NFTs for specific wallet. */}
                   </p>
                   <div>
                     <div className="form-control mt-8">
                       <label className="input-group input-group-vertical input-group-lg">
-                        <span>Search</span>
+                        <span>Enter Reciver Wallet Address</span>
                         <div className="flex space-x-2">
                           <input
                             type="text"
@@ -113,7 +113,7 @@ export const GalleryView: FC = ({}) => {
                 <div className="my-10">
                   {error ? (
                     <div>
-                      <h1>Error Occures</h1>
+                      <h1>Empty History</h1>
                       {(error as any)?.message}
                     </div>
                   ) : null}
@@ -148,7 +148,7 @@ const NftList = ({ nfts, error }: NftListProps) => {
   if (!nfts?.length) {
     return (
       <div className="text-center text-2xl pt-16">
-        No NFTs found in this wallet
+        No Files found in this wallet
       </div>
     );
   }
@@ -156,7 +156,7 @@ const NftList = ({ nfts, error }: NftListProps) => {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-start">
       {nfts?.map((nft) => (
-        <NftCard key={nft.mint} details={nft} onSelect={() => {}} />
+        <NftCard key={nft.mint} details={nft} onSelect={() => { }} />
       ))}
     </div>
   );
