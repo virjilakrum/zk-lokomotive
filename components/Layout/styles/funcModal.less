@@ -1,0 +1,57 @@
+.func-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+
+  .content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 120px;
+    isolation: isolate;
+    min-width: 480px;
+    min-height: 349px;
+    background: #FAF9FF;
+    border-radius: 10px;
+    position: relative;
+
+    .i-close {
+      position: absolute;
+      top: 21px;
+      right: 21px;
+      cursor: pointer;
+    }
+
+    .content-title {
+      font-family: 'Archivo';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 26px;
+      color: #000000;
+    }
+
+    .content-fotter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      .c-btn {
+        margin: 0 12px;
+      }
+
+      .cancel-btn {
+        background-color: #ba9756;
+      }
+    }
+  }
+}

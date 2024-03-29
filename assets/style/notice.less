@@ -1,0 +1,35 @@
+.notice-icon-a {
+  position: relative;
+  cursor: pointer;
+  transition: .5s;
+
+  .unread-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -5px;
+    right: 0;
+    background: #F93C47;
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 12px;
+    color: #FFFFFF;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+
+  &:hover {
+    background-color: #E2E8F0;
+    border-radius: 8px;
+    transition: .5s;
+
+    &::after {
+      content: '';
+      animation: none !important;
+    }
+  }
+}

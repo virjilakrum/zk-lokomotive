@@ -1,0 +1,182 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+p {
+  margin: 0;
+}
+
+/*
+ * text
+ */
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/*
+ * display
+ */
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.flex {
+  display: flex;
+}
+
+/*
+ * position
+ */
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+/*
+ * white-space
+ */
+.nowrap {
+  white-space: nowrap;
+}
+
+/*
+ * cursor
+ */
+.pointer {
+  cursor: pointer;
+}
+
+@keyframes slidein {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.pagination {
+  margin-top: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .MuiPaginationItem-root {
+    width: 49px;
+    height: 32px;
+    font-family: 'Archivo';
+    font-weight: 600;
+    font-size: 18px;
+    color: #98989A;
+
+    &:hover {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        left: 0;
+        bottom: -50%;
+        height: 2px;
+        background: linear-gradient(88.57deg, #FFEA7D -41.16%, #F19090 32.99%, #ba9756 99.49%);
+        animation: 1s slidein forwards;
+      }
+    }
+  }
+
+  .MuiPaginationItem-ellipsis {
+    &:hover {
+      &::after {
+        animation: none;
+      }
+    }
+  }
+
+  .Mui-selected {
+    background: #F2EFFF;
+    border-radius: 50px;
+    font-family: 'Archivo';
+    color: #df9100;
+  }
+}
+
+.ant-table {
+  background-color: transparent;
+
+  .ant-table-container {
+
+    .ant-table-content {
+
+      table {
+        background: #fff;
+        margin: 20px 0;
+
+        .ant-table-thead {
+
+          >tr>th {
+            background: #2b3a4b;
+            color: #fff;
+
+            &:first-child {
+              border-radius: 6px 0 0 6px;
+            }
+
+            &:last-child {
+              border-radius: 0 6px 6px 0;
+            }
+
+            &::before {
+              background-color: transparent !important;
+            }
+          }
+        }
+
+        .ant-table-tbody {
+
+          tr{
+            &:hover{
+              td{
+                color: var(--ui-color-indigo-indigo-700);
+                background: var(--ui-color-neutral-black-900);
+              }
+            }
+          }
+
+          >tr>td {
+            border: none;
+            color: var(--ui-color-neutral-black-900);
+          }
+        }
+      }
+    }
+  }
+}
+
+.main-layout {
+  width: 1440px;
+  padding: 35px 90px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
