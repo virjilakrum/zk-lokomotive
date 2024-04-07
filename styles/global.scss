@@ -6,6 +6,9 @@ body {
   background-color: #000000;
   font-weight: 500;
   font-style: normal;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 a {
   color: black;
@@ -51,8 +54,26 @@ button,
   font-weight: inherit;
   font-size: inherit;
 }
+.rootDiv  {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #000000;
+  color: #3cd36c;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+
+}
 main {
   width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   margin: 0 auto;
   text-align: center;
 }
@@ -104,6 +125,10 @@ main {
 
 .header {
   color: #3cd36c;
+}
+.wallet-button-container {
+  display: flex;
+  flex-direction: column
 }
 
 @import url("https://use.typekit.net/phn1xtz.css");

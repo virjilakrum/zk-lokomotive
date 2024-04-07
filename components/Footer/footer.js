@@ -23,7 +23,7 @@ export default function Footer() {
         </Link>
       </div>
       <a className={styles.siteLogo} href="https://bryceyoder.com">
-        {/* <img src="/images/logo.svg" alt="lokomotive"/> */}
+        {/* <img src="/images/logo.svg" alt="Bryce Yoder"/> */}
       </a>
     </footer>
   );

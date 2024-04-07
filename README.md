@@ -1,4 +1,5 @@
 # zk-lokomotive (Multichain File Transfer System with Solana-EVM Bridge)
+
 ![logo(3)](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/d4829ff3-9d99-4a69-b8b3-a50f28d6d62d)
 
 Author: [Baturalp Güvenç](https://github.com/virjilakrum)
@@ -6,7 +7,6 @@ Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 ## Introduction
 
 This project aims to create a secure and efficient file transfer system bridging Solana and Ethereum networks by integrating ZK, IPFS, and Wormhole. ZK ensures file integrity and privacy, IPFS facilitates file storage, and Wormhole enables cross-chain token and data transfer.
-
 
 ## Scenario Secure Research File Sharing
 
@@ -42,7 +42,7 @@ Dr. Z is conducting very sensitive and experimental research on a new cancer tre
         Mr. B's lab is also equipped with ZK proof verification tools.
         Mr. B can use his Solana wallet to access his storage account on Solana to retrieve and inspect ZK-verified files.
         Mr. B provides input and feedback that improves his research.
-        
+
 <img width="1305" alt="Ekran Resmi 2024-03-26 13 54 58" src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/b4102bda-ca1f-4ff6-bd06-ff92e6e9d73e">
 
 ### Benefits:
@@ -58,7 +58,6 @@ Dr. Z is conducting very sensitive and experimental research on a new cancer tre
     Access Control: Access permission efficiency can be increased with advanced smart contracts in Solana.
     User Interface: An easy-to-use web or mobile interface to follow the entire process.
     Data Analytics: Analytics operations on data stored in Ethereum & Solana.
-    
 
 ## Used Technologies:
 
@@ -112,7 +111,7 @@ impl ZkFile {
 }
 ```
 
-* The provided Rust struct ZkFile and its methods demonstrate the usage of ZK to encrypt and prove files' integrity. from_bytes function encrypts a file content using ZK, while to_data function converts a ZkFile object to ZkFileData format.
+- The provided Rust struct ZkFile and its methods demonstrate the usage of ZK to encrypt and prove files' integrity. from_bytes function encrypts a file content using ZK, while to_data function converts a ZkFile object to ZkFileData format.
 
 ```rust
 
@@ -124,7 +123,7 @@ fn upload_file(client: &IpfsClient, file_content: &[u8]) -> Result<String> {
 }
 ```
 
-* The provided Rust function upload_file demonstrates the usage of IPFS-http-client to interact with IPFS. It uploads file content to IPFS and returns the IPFS hash.
+- The provided Rust function upload_file demonstrates the usage of IPFS-http-client to interact with IPFS. It uploads file content to IPFS and returns the IPFS hash.
 
 ### Connection Overview
 
@@ -133,11 +132,9 @@ fn upload_file(client: &IpfsClient, file_content: &[u8]) -> Result<String> {
     ZkFile object, IPFS hash, and other metadata are converted to ZKFileData format.
     ZKFileData object is transferred to the recipient using Wormhole bridge.
 
-
 # Architecture Definition:
 
 <img width="1066" alt="diagram-1" src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/489427f8-d4fa-48d9-93a0-91bec10d5846">
-
 
 ZK File Transfer is a secure and private method for transferring files between two parties.
 
@@ -154,14 +151,13 @@ Adopting a decentralized approach to file transfer, utilizing the principles of 
 The ZK File Transfer, process uses advanced cryptographic techniques to ensure that files are transferred securely and privately:
 
 1. **Encryption and Decryption:** Files are encrypted using a shared secret, which is generated through a secure key exchange mechanism (e.g., Elliptic Curve Diffie-Hellman (ECDH)). This ensures that only the recipient, who possesses the corresponding secret, can decrypt and access the file.
-   
+
 <img width="770" alt="alice-bob" src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/f105c5f3-df66-4789-b8dc-2a6101d4398f">
 
-
 > Elliptic-curve Diffie–Hellman (ECDH) is an anonymous key agreement protocol that allows two parties, each having an elliptic-curve public–private key pair, to establish a shared secret over an insecure channel. This shared secret may be directly used as a key, or to derive another key. The key, or the derived key, can then be used to encrypt subsequent communications using a symmetric-key cipher. It is a variant of the Diffie–Hellman protocol using elliptic-curve cryptography.
-`
+> `
 
-You can choose between 10 standard NIST curves of different sizes. 5 pseudo-random curves and 5 Koblitz curves providing from 80 to 256 bits symmetrically equivalent security.  See [ecdh.h](https://github.com/kokke/tiny-ECDH-c/blob/master/ecdh.h) for clarification.
+You can choose between 10 standard NIST curves of different sizes. 5 pseudo-random curves and 5 Koblitz curves providing from 80 to 256 bits symmetrically equivalent security. See [ecdh.h](https://github.com/kokke/tiny-ECDH-c/blob/master/ecdh.h) for clarification.
 
 You can define the macro `ECDH_COFACTOR_VARIANT` in [ecdh.c](https://github.com/kokke/tiny-ECDH-c/blob/master/ecdh.c) to enable the [co-factor variant of ECDH](https://crypto.stackexchange.com/questions/18222/difference-between-ecdh-with-cofactor-key-and-ecdh-without-cofactor-key) for safe non-ephemeral use.
 
@@ -188,10 +184,10 @@ benchmarks does not break them. Do this before submitting a pull request.
 `cargo update` in the workspace root will update all the libraries to the
 latest version.
 
-`cargo +nightly bench -p crypto_bench_ring` runs all the tests for [*ring*](https://github.com/briansmith/ring).
-|                                              |       *ring*       |     rust-crypto    | rust-nettle (Nettle) | rust-openssl (OpenSSL) | sodiumoxide (libsodium) | Windows CNG | Mac/iOS Common Crypto |
+`cargo +nightly bench -p crypto_bench_ring` runs all the tests for [_ring_](https://github.com/briansmith/ring).
+| | _ring_ | rust-crypto | rust-nettle (Nettle) | rust-openssl (OpenSSL) | sodiumoxide (libsodium) | Windows CNG | Mac/iOS Common Crypto |
 |----------------------------------------------|:------------------:|:------------------:|----------------------|:----------------------:|:-----------------------:|:-----------:|:---------------------:|
-| ECDH (Suite B) key exchange                  | :white_check_mark: |                    |                      |                        |                         |             |                       |
+| ECDH (Suite B) key exchange | :white_check_mark: | | | | | | |
 
 ```
 // -----------------------------------------------------------------------------
@@ -225,8 +221,8 @@ crecip(felem out, const felem z) {
   /* 2^255 - 21 */ fmul(out, t0, a);
 }
 ```
-![An-example-of-ECC-version-of-Diffie-Hellman-Protocol](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/338121bb-a462-40b1-a561-034dd9010c4f)
 
+![An-example-of-ECC-version-of-Diffie-Hellman-Protocol](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/338121bb-a462-40b1-a561-034dd9010c4f)
 
 3. **Zero-Knowledge Proofs for File Integrity:** To verify that a file has been transmitted without revealing its content, zero-knowledge proofs are utilized. These proofs allow the sender to prove that the file matches a publicly agreed-upon hash without disclosing the file itself.
 
@@ -244,7 +240,7 @@ echo 'prepare phase2'
 node ../../../snarkjs/build/cli.cjs powersoftau prepare phase2 pot12_beacon.ptau pot12_final.ptau -v
 
 echo 'Verify the final ptau'
-node ../../../snarkjs/build/cli.cjs powersoftau verify pot12_final.ptau 
+node ../../../snarkjs/build/cli.cjs powersoftau verify pot12_final.ptau
 ```
 
 4. **Poseidon Hash for Data Integrity:** The integrity and authenticity of the file are ensured using the Poseidon hash function, a cryptographic hash function optimized for zero-knowledge proofs. This function is applied to the file before transmission, creating a digest that can be securely compared by the recipient.
@@ -261,20 +257,19 @@ https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API
 
 https://github.com/virjilakrum/zk-lokomotive
 
-* WebRTC (Web Real-Time Communication) is a technology that enables Web applications and sites to capture and optionally stream audio and/or video media, as well as to exchange arbitrary data between browsers without requiring an intermediary. The set of standards that comprise WebRTC makes it possible to share data and perform teleconferencing peer-to-peer, without requiring that the user install plug-ins or any other third-party software.
+- WebRTC (Web Real-Time Communication) is a technology that enables Web applications and sites to capture and optionally stream audio and/or video media, as well as to exchange arbitrary data between browsers without requiring an intermediary. The set of standards that comprise WebRTC makes it possible to share data and perform teleconferencing peer-to-peer, without requiring that the user install plug-ins or any other third-party software.
 
-    WebRTC Configuration: Use the RTCPeerConnection API to configure the WebRTC connection. Include STUN/TURN servers in the configuration to handle NAT traversal.
-    Data Channels: Use RTCDataChannel for transferring the encrypted AES key, zk-SNARK proof, and IPFS hash. This channel can also be used for the actual file transfer if not using IPFS.
-    Signaling Implementation: Implement a simple signaling mechanism using WebSockets or any real-time communication library. This is for exchanging WebRTC offer, answer, and ICE candidates. 
-https://microsoft.github.io/MixedReality-WebRTC/versions/release/1.0/manual/helloworld-unity-signaler.html
+      WebRTC Configuration: Use the RTCPeerConnection API to configure the WebRTC connection. Include STUN/TURN servers in the configuration to handle NAT traversal.
+      Data Channels: Use RTCDataChannel for transferring the encrypted AES key, zk-SNARK proof, and IPFS hash. This channel can also be used for the actual file transfer if not using IPFS.
+      Signaling Implementation: Implement a simple signaling mechanism using WebSockets or any real-time communication library. This is for exchanging WebRTC offer, answer, and ICE candidates.
+
+  https://microsoft.github.io/MixedReality-WebRTC/versions/release/1.0/manual/helloworld-unity-signaler.html
 
 8. **Client Interface:** The user interface for ZK File Transfer is designed to be intuitive, allowing users to easily send and receive files securely. The cryptographic operations are handled in the background, providing a seamless experience for the user.
 
 9. **Wallet Connection** The "Wallet Connection" button facilitates a secure linkage between users and their digital wallets, designed specifically for compatibility with the Solana blockchain using @solana/web3js library. Leveraging the advanced capabilities of the Phantom Wallet, this integration enables efficient management of digital assets and seamless file transactions with a person.
 
 https://solana-labs.github.io/solana-web3.js/
-
-
 
     The function transfer_sol_to_eth in lib.rs is used to transfer assets from Solana to Ethereum.
     The bridge and solana_wallet variables are used to create a Wormhole bridge and Solana wallet.
@@ -284,25 +279,39 @@ https://solana-labs.github.io/solana-web3.js/
     The ix variable is used to create a command to interact with the smart contract.
     The function solana_provider.send_and_confirm is used to send the transaction to the Solana network.
 
+    __
+    *First, run for the frontend development server:*
+    __
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    # or
+    pnpm dev
+    # or
+    bun dev
+    ```
 
-__
-*Anchor Solana Cli Build*
-__
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh```
+**
+_Anchor Solana Cli Build_
+**
 
-```rustc --version```
+`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 
-```cargo install --git https://github.com/coral-xyz/anchor anchor-cli --locked```
+`rustc --version`
 
-```anchor --version```
+`cargo install --git https://github.com/coral-xyz/anchor anchor-cli --locked`
 
-```sh -c "$(curl -sSfL https://release.solana.com/v1.18.4/install)"```
+`anchor --version`
 
-```solana --version```
+`sh -c "$(curl -sSfL https://release.solana.com/v1.18.4/install)"`
 
-```cd tokenswap_contract```
+`solana --version`
 
-```anchor build```
+`cd tokenswap_contract`
 
-```anchor test```
+`anchor build`
+
+`anchor test`
