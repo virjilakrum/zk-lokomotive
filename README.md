@@ -4,6 +4,12 @@
 
 Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
+## Team 
+
+![lokomotive](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/90ba0ad9-97ad-4546-a31c-7df99ca0a426)
+
+
+
 ## Introduction
 
 This project aims to create a secure and efficient file transfer system bridging Solana and Ethereum networks by integrating ZK, IPFS, and Wormhole. ZK ensures file integrity and privacy, IPFS facilitates file storage, and Wormhole enables cross-chain token and data transfer.
