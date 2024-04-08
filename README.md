@@ -12,7 +12,19 @@ Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
 ## Introduction
 
-This project aims to create a secure and efficient file transfer system bridging Solana and Ethereum networks by integrating ZK, IPFS, and Wormhole. ZK ensures file integrity and privacy, IPFS facilitates file storage, and Wormhole enables cross-chain token and data transfer.
+* This project aims to create a secure and efficient file transfer system bridging Solana and Ethereum networks by integrating ZK, IPFS, and Wormhole. ZK ensures file integrity and privacy, IPFS facilitates file storage, and Wormhole enables cross-chain token and data transfer.
+
+This project encompasses file transfer scenarios within the **Solana-Solana** and **Solana-EVM** ecosystems. 
+
+---
+
+In the Solana-Solana file transfer scenario, WebRTC is employed instead of Wormhole, with the endpoints (IDs) being the users' wallet addresses on the Solana network. Within the Solana network, the file transfer process operates as follows: RSA keys are utilized to encrypt AES keys, facilitating their secure exchange between the two clients. Subsequently, the file is encrypted using the exchanged AES key and decrypted accordingly by the recipient.
+
+---
+
+On the other hand, the architecture undergoes a significant shift for file transfer between Solana and EVM-based networks. In this scenario, I establish a bridge between Solana and EVM networks. The file is encrypted with zero-knowledge proofs (ZK) and transformed into a token in exchange for tokens. This token, encapsulating the ZK proof of the file's integrity, traverses the Solana-EVM bridge via Wormhole. Upon reception, the recipient validates the ZK proof to claim the file. Additionally, I retrieve the file from IPFS, ensuring its integrity based on the verified proof.
+
+In summary, this project implements a sophisticated file transfer mechanism, leveraging different technologies for seamless communication between Solana-Solana and Solana-EVM networks. Through meticulous encryption, tokenization, and validation processes, it ensures the secure and verifiable exchange of files while maintaining compatibility and interoperability across disparate blockchain ecosystems.
 
 ## Scenario Secure Research File Sharing
 
@@ -26,28 +38,7 @@ This project aims to create a secure and efficient file transfer system bridging
 
 Dr. Z is conducting very sensitive and experimental research on a new cancer treatment. He is asking for input from collaborating scientists (like Mr. B) before he is sure of his results. But leaking data can have serious consequences because of the intellectual property of the research and its implications for potential patent applications. In addition, the accuracy and validity of the research data needs to be proven.
 
-### Solution: Solana-Ethereum Integration with ZK File Transfer
-
-    Encryption and IPFS Upload:
-        Dr. Z encrypts important research files using the ZKFile library and creates a ZK proof.
-        The encrypted files are uploaded to IPFS and a unique IPFS hash value is generated for each file.
-
-    Solana Account Creation:
-        Dr. Z creates an account on the Solana blockchain to store the ZK file data. This account is loaded with the initial SOL tokens required for the ZK file stream.
-
-    Providing Access to the Recipient (Ethereum Foundation):
-        Dr. Z obtains the Ethereum wallet address of the Ethereum Foundation.
-        A token for access to the Solana account (SOL) is transferred to the Ethereum Foundation's address using the Wormhole bridge.
-
-    ZK File Transfer:
-        ZKFileData objects are created. These objects wrap the IPFS hash value, filename, size and ZK proof of the encrypted file.
-        ZKFileData objects are transferred to the Ethereum Foundation's wallet via Solana with Wormhole Token Extensions.
-        The Ethereum Foundation can also verify the integrity of the files through smart contract interactions on Ethereum.
-
-    Collaboration and Verification (Mr. B):
-        Mr. B's lab is also equipped with ZK proof verification tools.
-        Mr. B can use his Solana wallet to access his storage account on Solana to retrieve and inspect ZK-verified files.
-        Mr. B provides input and feedback that improves his research.
+### Solution: (Solana-EVM) Integration with ZK File Transfer
 
 ![Architecture](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/e2fa9fa0-6bde-4433-82b5-3713dac536e4)
 
