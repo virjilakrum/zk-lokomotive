@@ -50,7 +50,8 @@ Dr. Z is conducting very sensitive and experimental research on a new cancer tre
         Mr. B can use his Solana wallet to access his storage account on Solana to retrieve and inspect ZK-verified files.
         Mr. B provides input and feedback that improves his research.
 
-<img width="1305" alt="Ekran Resmi 2024-03-26 13 54 58" src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/b4102bda-ca1f-4ff6-bd06-ff92e6e9d73e">
+![Architecture](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/e2fa9fa0-6bde-4433-82b5-3713dac536e4)
+
 
 ### Benefits:
 
@@ -322,3 +323,7 @@ _Anchor Solana Cli Build_
 `anchor build`
 
 `anchor test`
+
+![Thank You](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/af24913b-b649-4bf5-90e1-fdd99e68ca51)
+
+
