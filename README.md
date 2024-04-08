@@ -36,26 +36,75 @@ Adopting a decentralized approach to file transfer, utilizing the principles of 
 
 ## Scenario Secure Research File Sharing
 
-### Actors
+**Scene: Biomedical Research University**
 
-    Dr. Z: A biomedical researcher working at a prestigious university.
-    Mr. B: A collaborator working in a separate research lab at the same university.
-    "Solana(mainnet) & Ethereum" Foundation: Funding Dr. Z's research and awaiting updates on progress.
+**Characters:**
 
-### Problem
+    Alice: Biomedical researcher
+    Bob: Collaborator
 
-Dr. Z is conducting very sensitive and experimental research on a new cancer treatment. He is asking for input from collaborating scientists (like Mr. B) before he is sure of his results. But leaking data can have serious consequences because of the intellectual property of the research and its implications for potential patent applications. In addition, the accuracy and validity of the research data needs to be proven.
+**Solana-Solana File Transfer:**
 
-### Solution: (Solana-EVM) Integration with ZK File Transfer
+Location: Research Lab at the Biomedical Research University
+
+Action:
+
+    Alice prepares to share a research file with Bob securely within the Solana network.
+
+Dialogue:
+
+    Alice: Hi Bob, I've completed the analysis on our latest research data. I need your input on it.
+    Bob: Sure Alice, I'm ready to collaborate. How should we proceed?
+    Alice: We'll transfer the file securely using Solana's network. I'll encrypt the file with RSA keys and share the AES key with you.
+    Bob: Sounds good. Let's get started.
+
+Process:
+
+    Alice encrypts the research file using RSA keys and prepares to share the AES key with Bob for decryption.
+    Alice shares the AES key securely with Bob using their Solana wallet addresses as identifiers.
+    Bob receives the AES key and decrypts the file, enabling him to review the research data.
+
+Outcome:
+
+    The research file is securely transferred from Alice to Bob within the Solana network, ensuring privacy and integrity.
+
+---
+
+**Solana-EVM File Transfer:**
+
+Location: Research Lab at the Biomedical Research University
+
+Action:
+
+    Alice needs to share a research file with collaborators on an EVM-based network.
+
+Dialogue:
+
+    Alice: Bob, we have collaborators on an EVM-based network who need access to our research data. We'll need to transfer it securely.
+    Bob: Understood. How do we proceed with this transfer?
+    Alice: We'll use a bridge between Solana and the EVM network. I'll encrypt the file with zero-knowledge proofs and tokenize it for transfer.
+    Bob: Got it. Let's make sure everything is set up correctly.
+
+Process:
+
+    Alice encrypts the research file with zero-knowledge proofs (ZK) and converts it into a token for transfer.
+    Alice initiates the transfer of the tokenized file through the Solana-EVM bridge via Wormhole.
+    Collaborators on the EVM-based network receive the token and validate the ZK proof to claim the file.
+    Alice retrieves the file from IPFS to ensure its integrity based on the verified proof.
+
+Outcome:
+
+    The research file is securely transferred from Alice to collaborators on the EVM-based network, maintaining privacy and integrity across different blockchain ecosystems.
+
 
 ![Architecture](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/e2fa9fa0-6bde-4433-82b5-3713dac536e4)
 
 
 ### Benefits:
 
-    Privacy: ZK encryption guarantees that sensitive data can only be accessed by Dr. Johnson and authorized collaborators.
+    Privacy: ZK encryption guarantees that sensitive data can only be accessed by Alice and authorized collaborators.
     Integrity: ZK proofs confirm that research data has not been altered in a secure environment.
-    Traceability: Solana and Ethereum blockchains provide a permanent record of transactions.
+    Traceability: Solana and EVM blockchains provide a permanent record of transactions.
     Trust: The protocol uses both cryptographic techniques and blockchain technology to share research data in a trusted way.
     Wormhole Integration: Seamless communication between Solana and Ethereum allows collaborators and stakeholders to be on different blockchains.
 
@@ -72,49 +121,42 @@ Dr. Z is conducting very sensitive and experimental research on a new cancer tre
 ```rust
 
 
-pub fn transfer_sol_to_eth(
-    ctx: CpiContext<'_, '_, '_, '_, MultichainTransfer>,
-    receiver_address: Pubkey,
-    amount: u64,
-) -> Result<()> {
-    let solana_wallet = SolanaWallet::new(ctx.accounts.connection.clone());
-    bridge.transfer(
-        &solana_wallet,
-        &Token::native_sol(),
-        amount,
-        "ethereum",
-        receiver_address.as_ref(),
-    )?;
+use anchor_lang::prelude::*;
+use borsh::{BorshDeserialize, BorshSerialize};
+use std::{
+    io::Write,
+};
 
-    Ok(())
-}
-```
+#[derive(AnchorDeserialize, AnchorSerialize)]
+pub struct PostMessageData {
+    /// Unique nonce for this message
+    pub nonce: u32,
 
-```rust
+    /// Message payload
+    pub payload: Vec<u8>,
 
-pub struct ZkFile {
-    pub content: Vec<u8>, // Encrypted file content using ZK
-    pub proof: Vec<u8>, // ZK proof
+    /// Commitment Level required for an attestation to be produced
+    pub consistency_level: ConsistencyLevel,
 }
 
-impl ZkFile {
-    pub fn from_bytes(file_content: &[u8]) -> Self {
-        let (content, proof) = zk_proof::encrypt(file_content);
-
-        ZkFile {
-            content,
-            proof,
-        }
-    }
-
-    pub fn to_data(&self) -> ZkFileData {
-        ZkFileData {
-            content: self.content.clone(),
-            proof: self.proof.clone(),
-            ..Default::default()
-        }
-    }
+#[derive(AnchorDeserialize, AnchorSerialize)]
+pub enum ConsistencyLevel {
+    Confirmed,
+    Finalized
 }
+
+#[derive(AnchorDeserialize, AnchorSerialize)]
+pub enum Instruction{
+    Initialize,
+    PostMessage,
+    PostVAA,
+    SetFees,
+    TransferFees,
+    UpgradeContract,
+    UpgradeGuardianSet,
+    VerifySignatures,
+}
+
 ```
 
 - The provided Rust struct ZkFile and its methods demonstrate the usage of ZK to encrypt and prove files' integrity. from_bytes function encrypts a file content using ZK, while to_data function converts a ZkFile object to ZkFileData format.
@@ -186,39 +228,6 @@ latest version.
 |----------------------------------------------|:------------------:|:------------------:|----------------------|:----------------------:|:-----------------------:|:-----------:|:---------------------:|
 | ECDH (Suite B) key exchange | :white_check_mark: | | | | | | |
 
-```
-// -----------------------------------------------------------------------------
-// Eliptic Curve Diffie-Hellman [ECDH] Key Exchange Protocol
-// -----------------------------------------------------------------------------
-static void
-crecip(felem out, const felem z) {
-  felem a,t0,b,c;
-
-  /* 2 */ fsquare_times(a, z, 1); // a = 2
-  /* 8 */ fsquare_times(t0, a, 2);
-  /* 9 */ fmul(b, t0, z); // b = 9
-  /* 11 */ fmul(a, b, a); // a = 11
-  /* 22 */ fsquare_times(t0, a, 1);
-  /* 2^5 - 2^0 = 31 */ fmul(b, t0, b);
-  /* 2^10 - 2^5 */ fsquare_times(t0, b, 5);
-  /* 2^10 - 2^0 */ fmul(b, t0, b);
-  /* 2^20 - 2^10 */ fsquare_times(t0, b, 10);
-  /* 2^20 - 2^0 */ fmul(c, t0, b);
-  /* 2^40 - 2^20 */ fsquare_times(t0, c, 20);
-  /* 2^40 - 2^0 */ fmul(t0, t0, c);
-  /* 2^50 - 2^10 */ fsquare_times(t0, t0, 10);
-  /* 2^50 - 2^0 */ fmul(b, t0, b);
-  /* 2^100 - 2^50 */ fsquare_times(t0, b, 50);
-  /* 2^100 - 2^0 */ fmul(c, t0, b);
-  /* 2^200 - 2^100 */ fsquare_times(t0, c, 100);
-  /* 2^200 - 2^0 */ fmul(t0, t0, c);
-  /* 2^250 - 2^50 */ fsquare_times(t0, t0, 50);
-  /* 2^250 - 2^0 */ fmul(t0, t0, b);
-  /* 2^255 - 2^5 */ fsquare_times(t0, t0, 5);
-  /* 2^255 - 21 */ fmul(out, t0, a);
-}
-```
-
 ![An-example-of-ECC-version-of-Diffie-Hellman-Protocol](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/338121bb-a462-40b1-a561-034dd9010c4f)
 
 3. **Zero-Knowledge Proofs for File Integrity:** To verify that a file has been transmitted without revealing its content, zero-knowledge proofs are utilized. These proofs allow the sender to prove that the file matches a publicly agreed-upon hash without disclosing the file itself.
@@ -243,11 +252,11 @@ node ../../../snarkjs/build/cli.cjs powersoftau verify pot12_final.ptau
 
 ![20-Table6-1](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/6f57ca6d-f074-4106-aed1-067ab9277003)
 
-4. **Decentralized Verification:** The verification process, including the checking of zero-knowledge proofs, is performed on a blockchain network (e.g., Solana). This decentralized approach eliminates the need for a trusted third party, enhancing the security and privacy of the file transfer.
+* Decentralized Verification: The verification process, including the checking of zero-knowledge proofs, is performed on a blockchain network (e.g., Solana). This decentralized approach eliminates the need for a trusted third party, enhancing the security and privacy of the file transfer.
 
-5. **Efficient Data Storage on Blockchain:** To maintain efficiency and minimize blockchain storage requirements, only essential data (e.g., proofs, hashes) are stored on-chain. The actual file remains with the sender and recipient, ensuring privacy.
+* Efficient Data Storage on Blockchain: To maintain efficiency and minimize blockchain storage requirements, only essential data (e.g., proofs, hashes) are stored on-chain. The actual file remains with the sender and recipient, ensuring privacy.
 
-6. **Server:** The system operates on a peer-to-peer basis, with each participant running the ZK File Transfer client. This design supports direct, secure file transfers without intermediaries.
+* Server: The system operates on a peer-to-peer basis, with each participant running the ZK File Transfer client. This design supports direct, secure file transfers without intermediaries.
 
 https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API
 
@@ -261,9 +270,9 @@ https://github.com/virjilakrum/zk-lokomotive
 
   https://microsoft.github.io/MixedReality-WebRTC/versions/release/1.0/manual/helloworld-unity-signaler.html
 
-8. **Client Interface:** The user interface for ZK File Transfer is designed to be intuitive, allowing users to easily send and receive files securely. The cryptographic operations are handled in the background, providing a seamless experience for the user.
+* Client Interface: The user interface for ZK File Transfer is designed to be intuitive, allowing users to easily send and receive files securely. The cryptographic operations are handled in the background, providing a seamless experience for the user.
 
-9. **Wallet Connection** The "Wallet Connection" button facilitates a secure linkage between users and their digital wallets, designed specifically for compatibility with the Solana blockchain using @solana/web3js library. Leveraging the advanced capabilities of the Phantom Wallet, this integration enables efficient management of digital assets and seamless file transactions with a person.
+* Wallet Connection: The "Wallet Connection" button facilitates a secure linkage between users and their digital wallets, designed specifically for compatibility with the Solana blockchain using @solana/web3js library. Leveraging the advanced capabilities of the Phantom Wallet, this integration enables efficient management of digital assets and seamless file transactions with a person.
 
 https://solana-labs.github.io/solana-web3.js/
 
