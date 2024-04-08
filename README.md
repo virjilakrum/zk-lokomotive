@@ -12,7 +12,27 @@ Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
 ## Introduction
 
-This project aims to create a secure and efficient file transfer system bridging Solana and Ethereum networks by integrating ZK, IPFS, and Wormhole. ZK ensures file integrity and privacy, IPFS facilitates file storage, and Wormhole enables cross-chain token and data transfer.
+* This project aims to create a secure and efficient file transfer system bridging Solana and Ethereum networks by integrating ZK, IPFS, and Wormhole. ZK ensures file integrity and privacy, IPFS facilitates file storage, and Wormhole enables cross-chain token and data transfer.
+
+This project encompasses file transfer scenarios within the **Solana-Solana** and **Solana-EVM** ecosystems. 
+
+---
+
+In the Solana-Solana file transfer scenario, WebRTC is employed instead of Wormhole, with the endpoints (IDs) being the users' wallet addresses on the Solana network. Within the Solana network, the file transfer process operates as follows: RSA keys are utilized to encrypt AES keys, facilitating their secure exchange between the two clients. Subsequently, the file is encrypted using the exchanged AES key and decrypted accordingly by the recipient.
+
+---
+
+On the other hand, the architecture undergoes a significant shift for file transfer between Solana and EVM-based networks. In this scenario, I establish a bridge between Solana and EVM networks. The file is encrypted with zero-knowledge proofs (ZK) and transformed into a token in exchange for tokens. This token, encapsulating the ZK proof of the file's integrity, traverses the Solana-EVM bridge via Wormhole. Upon reception, the recipient validates the ZK proof to claim the file. Additionally, I retrieve the file from IPFS, ensuring its integrity based on the verified proof.
+
+In summary, this project implements a sophisticated file transfer mechanism, leveraging different technologies for seamless communication between Solana-Solana and Solana-EVM networks. Through meticulous encryption, tokenization, and validation processes, it ensures the secure and verifiable exchange of files while maintaining compatibility and interoperability across disparate blockchain ecosystems.
+
+## Motivation:
+
+Providing the amount of our data continues rapidly in the technological singularity. Traditional file formats often lack adequate privacy and security, especially when it comes to sensitive data. File services run on a central server, creating the risk of data breaches and privacy violations. We offer a different solution to this than traditional breaks, by combining the powerful capacities and polynomials of mathematics and the decentralized generality of Solana, thus challenging the trilemma.
+
+## Solution:
+
+Adopting a decentralized approach to file transfer, utilizing the principles of zero-knowledge proofs (zkSNARKs), can significantly enhance privacy and security. This method allows for the verification of file transmission without revealing the contents of the files to the network or a third party.
 
 ## Scenario Secure Research File Sharing
 
@@ -26,28 +46,7 @@ This project aims to create a secure and efficient file transfer system bridging
 
 Dr. Z is conducting very sensitive and experimental research on a new cancer treatment. He is asking for input from collaborating scientists (like Mr. B) before he is sure of his results. But leaking data can have serious consequences because of the intellectual property of the research and its implications for potential patent applications. In addition, the accuracy and validity of the research data needs to be proven.
 
-### Solution: Solana-Ethereum Integration with ZK File Transfer
-
-    Encryption and IPFS Upload:
-        Dr. Z encrypts important research files using the ZKFile library and creates a ZK proof.
-        The encrypted files are uploaded to IPFS and a unique IPFS hash value is generated for each file.
-
-    Solana Account Creation:
-        Dr. Z creates an account on the Solana blockchain to store the ZK file data. This account is loaded with the initial SOL tokens required for the ZK file stream.
-
-    Providing Access to the Recipient (Ethereum Foundation):
-        Dr. Z obtains the Ethereum wallet address of the Ethereum Foundation.
-        A token for access to the Solana account (SOL) is transferred to the Ethereum Foundation's address using the Wormhole bridge.
-
-    ZK File Transfer:
-        ZKFileData objects are created. These objects wrap the IPFS hash value, filename, size and ZK proof of the encrypted file.
-        ZKFileData objects are transferred to the Ethereum Foundation's wallet via Solana with Wormhole Token Extensions.
-        The Ethereum Foundation can also verify the integrity of the files through smart contract interactions on Ethereum.
-
-    Collaboration and Verification (Mr. B):
-        Mr. B's lab is also equipped with ZK proof verification tools.
-        Mr. B can use his Solana wallet to access his storage account on Solana to retrieve and inspect ZK-verified files.
-        Mr. B provides input and feedback that improves his research.
+### Solution: (Solana-EVM) Integration with ZK File Transfer
 
 ![Architecture](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/e2fa9fa0-6bde-4433-82b5-3713dac536e4)
 
@@ -145,34 +144,15 @@ fn upload_file(client: &IpfsClient, file_content: &[u8]) -> Result<String> {
 
 ZK File Transfer is a secure and private method for transferring files between two parties.
 
-## Motivation:
 
-Providing the amount of our data continues rapidly in the technological singularity. Traditional file formats often lack adequate privacy and security, especially when it comes to sensitive data. File services run on a central server, creating the risk of data breaches and privacy violations. We offer a different solution to this than traditional breaks, by combining the powerful capacities and polynomials of mathematics and the decentralized generality of Solana, thus challenging the trilemma.
-
-## Solution:
-
-Adopting a decentralized approach to file transfer, utilizing the principles of zero-knowledge proofs (zkSNARKs), can significantly enhance privacy and security. This method allows for the verification of file transmission without revealing the contents of the files to the network or a third party.
-
-## Technical Description:
+## Technical Implementation::
 
 The ZK File Transfer, process uses advanced cryptographic techniques to ensure that files are transferred securely and privately:
 
-1. **Encryption and Decryption:** Files are encrypted using a shared secret, which is generated through a secure key exchange mechanism (e.g., Elliptic Curve Diffie-Hellman (ECDH)). This ensures that only the recipient, who possesses the corresponding secret, can decrypt and access the file.
+1. **WebRTC Configuration:** Utilize the RTCPeerConnection API to configure the WebRTC connection. Include STUN/TURN servers in the configuration for NAT traversal.
 
-<img width="770" alt="alice-bob" src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/f105c5f3-df66-4789-b8dc-2a6101d4398f">
+2. **Encryption and Decryption:** Use RSA keys for encryption and decryption of AES keys. Implement the exchange of AES keys between clients securely.
 
-> Elliptic-curve Diffie–Hellman (ECDH) is an anonymous key agreement protocol that allows two parties, each having an elliptic-curve public–private key pair, to establish a shared secret over an insecure channel. This shared secret may be directly used as a key, or to derive another key. The key, or the derived key, can then be used to encrypt subsequent communications using a symmetric-key cipher. It is a variant of the Diffie–Hellman protocol using elliptic-curve cryptography.
-> `
-
-You can choose between 10 standard NIST curves of different sizes. 5 pseudo-random curves and 5 Koblitz curves providing from 80 to 256 bits symmetrically equivalent security. See [ecdh.h](https://github.com/kokke/tiny-ECDH-c/blob/master/ecdh.h) for clarification.
-
-You can define the macro `ECDH_COFACTOR_VARIANT` in [ecdh.c](https://github.com/kokke/tiny-ECDH-c/blob/master/ecdh.c) to enable the [co-factor variant of ECDH](https://crypto.stackexchange.com/questions/18222/difference-between-ecdh-with-cofactor-key-and-ecdh-without-cofactor-key) for safe non-ephemeral use.
-
-# Binding ECDH on Rust (Ring)
-
-These benchmarks currently only can be built/run using Nightly Rust because
-they use Rust's built-in benchmarking feature, and that feature is marked
-"unstable" (i.e. "Nightly-only").
 
 ```
 git clone https://github.com/briansmith/crypto-bench && cd crypto-bench && cargo update && cargo +nightly bench
