@@ -145,18 +145,28 @@ fn upload_file(client: &IpfsClient, file_content: &[u8]) -> Result<String> {
 ZK File Transfer is a secure and private method for transferring files between two parties.
 
 
-## Technical Implementation::
+## Technical Implementation of [Solana-Solana] File Transfer:
+The architecture comprises two main components: the Solana-Solana file transfer system using WebRTC and the Solana-EVM file transfer system with the bridge architecture.
 
-The ZK File Transfer, process uses advanced cryptographic techniques to ensure that files are transferred securely and privately:
+    Utilizes WebRTC for secure file transfer between users on the Solana network.
+    Encryption and decryption of files using RSA and AES keys.
+    Direct exchange of encrypted files between clients.
 
 1. **WebRTC Configuration:** Utilize the RTCPeerConnection API to configure the WebRTC connection. Include STUN/TURN servers in the configuration for NAT traversal.
 
 2. **Encryption and Decryption:** Use RSA keys for encryption and decryption of AES keys. Implement the exchange of AES keys between clients securely.
 
+3. **Solana-EVM Bridge:** Establish a bridge between Solana and EVM networks for token transfer. Implement the conversion of files into tokens with ZK proofs.
 
+4. **Wormhole Integration:** Utilize Wormhole for cross-chain communication between Solana and EVM networks. Transfer tokens representing ZK proofs through the Wormhole bridge.
+
+5. **IPFS Integration:** Retrieve files from IPFS based on the ZK proofs presented by the recipients.
+
+   
 ```
 git clone https://github.com/briansmith/crypto-bench && cd crypto-bench && cargo update && cargo +nightly bench
 ```
+
 
 You must use Rust Nightly because `cargo bench` is used for these benchmarks,
 and only Right Nightly supports `cargo bench`.
@@ -230,7 +240,6 @@ echo 'Verify the final ptau'
 node ../../../snarkjs/build/cli.cjs powersoftau verify pot12_final.ptau
 ```
 
-4. **Poseidon Hash for Data Integrity:** The integrity and authenticity of the file are ensured using the Poseidon hash function, a cryptographic hash function optimized for zero-knowledge proofs. This function is applied to the file before transmission, creating a digest that can be securely compared by the recipient.
 
 ![20-Table6-1](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/6f57ca6d-f074-4106-aed1-067ab9277003)
 
