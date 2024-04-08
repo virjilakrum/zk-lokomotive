@@ -1,9 +1,8 @@
 # zk-lokomotive (Zk Based Fully Secure and Trustless Multichain File Transfer System)
+Author: [Baturalp Güvenç](https://github.com/virjilakrum)
+
 
 ![logo(3) 1](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/a5504168-988c-464f-bf15-e6a650f46586)
-
-
-Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
 ## Team 
 
