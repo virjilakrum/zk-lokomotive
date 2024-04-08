@@ -3,9 +3,8 @@ import Footer from 'components/Footer/footer.js'
 
 function Layout({ children }) {
     return (
-        <div>
+        <div className='rootDiv'>
             {children}
-            <Footer />
         </div>
     )
 }

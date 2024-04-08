@@ -1,0 +1,137 @@
+.core_you, .core_partner {
+    border-width: 0.2rem;
+    border-style: solid;
+    border-spacing: 20rem;
+    
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    height: 100%;
+    box-sizing:border-box;
+    position: absolute;
+    transition: all 0.5s ease;    
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    z-index: 2;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 200% 50%;
+        opacity: 1;
+    }
+    100% {
+        background-position: -80% 50%;
+        opacity: 1;
+    }
+    
+}
+
+.transferAnim {
+    transition: all 0.5s ease;
+    display: block;
+    background: linear-gradient(to right, black, #3cd36c, black);
+    background-repeat: no-repeat;
+    background-size: 200% 200%;
+    background-position: 0 0;
+    animation: gradientAnimation 1s infinite;
+    position: absolute;
+    z-index: 0;
+    overflow: hidden;
+    width: 50%;
+    height: 80%;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+
+
+}
+.core_partner {
+    opacity: 0;
+    pointer-events: none;
+    height: 100%;
+    
+}
+
+.core_root {
+    transition: all 0.5s ease;
+    display: block;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+// Receive css classes
+.core_you_awaiting_recv {
+    transform: translate(15%, -50%);
+}
+.core_you_recv {
+    transform: translate(15%, -50%);
+}
+.core_partner_visible {
+    opacity: 1;
+    display: block;
+}
+.core_partner_flicker {
+    animation: opacityAnimation 2s infinite;
+}
+.core_partner_sending {
+    transform: translate(-115%, -50%);
+}
+
+.send_prompt_root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+@keyframes opacityAnimation {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+// send css classes
+.core_partner_receiving {
+    transform: translate(15%, -50%);
+}
+.core_you_left {
+    transform: translate(-115%, -50%);
+}
+
+.selection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    div {
+        cursor: pointer;
+        border-width: 0.2rem;
+        border-style: solid;
+        padding: 20px;
+    }
+}
