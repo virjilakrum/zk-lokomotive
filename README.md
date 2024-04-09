@@ -211,7 +211,6 @@ The architecture comprises two main components: the Solana-Solana file transfer 
 git clone https://github.com/briansmith/crypto-bench && cd crypto-bench && cargo update && cargo +nightly bench
 ```
 
-
 You must use Rust Nightly because `cargo bench` is used for these benchmarks,
 and only Right Nightly supports `cargo bench`.
 
@@ -230,9 +229,7 @@ latest version.
 |----------------------------------------------|:------------------:|:------------------:|----------------------|:----------------------:|:-----------------------:|:-----------:|:---------------------:|
 | ECDH (Suite B) key exchange | :white_check_mark: | | | | | | |
 
-![An-example-of-ECC-version-of-Diffie-Hellman-Protocol](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/338121bb-a462-40b1-a561-034dd9010c4f)
 
-3. **Zero-Knowledge Proofs for File Integrity:** To verify that a file has been transmitted without revealing its content, zero-knowledge proofs are utilized. These proofs allow the sender to prove that the file matches a publicly agreed-upon hash without disclosing the file itself.
 
 ```
 echo 'prepare phase1'
@@ -250,9 +247,6 @@ node ../../../snarkjs/build/cli.cjs powersoftau prepare phase2 pot12_beacon.ptau
 echo 'Verify the final ptau'
 node ../../../snarkjs/build/cli.cjs powersoftau verify pot12_final.ptau
 ```
-
-
-![20-Table6-1](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/6f57ca6d-f074-4106-aed1-067ab9277003)
 
 * Decentralized Verification: The verification process, including the checking of zero-knowledge proofs, is performed on a blockchain network (e.g., Solana). This decentralized approach eliminates the need for a trusted third party, enhancing the security and privacy of the file transfer.
 
