@@ -207,6 +207,9 @@ The architecture comprises two main components: the Solana-Solana file transfer 
 
 2. **Wormhole Integration:** Utilize Wormhole for cross-chain communication between Solana and EVM networks. Transfer tokens representing ZK proofs through the Wormhole bridge.
 
+---
+
+
 ```
 git clone https://github.com/briansmith/crypto-bench && cd crypto-bench && cargo update && cargo +nightly bench
 ```
@@ -225,6 +228,9 @@ benchmarks does not break them. Do this before submitting a pull request.
 latest version.
 
 `cargo +nightly bench -p crypto_bench_ring` runs all the tests for [_ring_](https://github.com/briansmith/ring).
+
+---
+
 | | _ring_ | rust-crypto | rust-nettle (Nettle) | rust-openssl (OpenSSL) | sodiumoxide (libsodium) | Windows CNG | Mac/iOS Common Crypto |
 |----------------------------------------------|:------------------:|:------------------:|----------------------|:----------------------:|:-----------------------:|:-----------:|:---------------------:|
 | ECDH (Suite B) key exchange | :white_check_mark: | | | | | | |
@@ -279,19 +285,6 @@ https://solana-labs.github.io/solana-web3.js/
     The solana_provider variable is used to create Anchor's Solana provider.
     The ix variable is used to create a command to interact with the smart contract.
     The function solana_provider.send_and_confirm is used to send the transaction to the Solana network.
-
-    __
-    *First, run for the frontend development server:*
-    __
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    # or
-    pnpm dev
-    # or
-    bun dev
-    ```
 
     Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
