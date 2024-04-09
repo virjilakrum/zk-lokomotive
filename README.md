@@ -198,13 +198,15 @@ The architecture comprises two main components: the Solana-Solana file transfer 
 
 2. **Encryption and Decryption:** Use RSA keys for encryption and decryption of AES keys. Implement the exchange of AES keys between clients securely.
 
-3. **Solana-EVM Bridge:** Establish a bridge between Solana and EVM networks for token transfer. Implement the conversion of files into tokens with ZK proofs.
+3. **IPFS Integration:** Retrieve files from IPFS based on the ZK proofs presented by the recipients.
 
-4. **Wormhole Integration:** Utilize Wormhole for cross-chain communication between Solana and EVM networks. Transfer tokens representing ZK proofs through the Wormhole bridge.
 
-5. **IPFS Integration:** Retrieve files from IPFS based on the ZK proofs presented by the recipients.
+## Technical Implementation of [Solana-EVM] File Transfer:
 
-   
+1. **Solana-EVM Bridge:** Establish a bridge between Solana and EVM networks for token transfer. Implement the conversion of files into tokens with ZK proofs.
+
+2. **Wormhole Integration:** Utilize Wormhole for cross-chain communication between Solana and EVM networks. Transfer tokens representing ZK proofs through the Wormhole bridge.
+
 ```
 git clone https://github.com/briansmith/crypto-bench && cd crypto-bench && cargo update && cargo +nightly bench
 ```
