@@ -198,17 +198,21 @@ The architecture comprises two main components: the Solana-Solana file transfer 
 
 2. **Encryption and Decryption:** Use RSA keys for encryption and decryption of AES keys. Implement the exchange of AES keys between clients securely.
 
-3. **Solana-EVM Bridge:** Establish a bridge between Solana and EVM networks for token transfer. Implement the conversion of files into tokens with ZK proofs.
+3. **IPFS Integration:** Retrieve files from IPFS based on the ZK proofs presented by the recipients.
 
-4. **Wormhole Integration:** Utilize Wormhole for cross-chain communication between Solana and EVM networks. Transfer tokens representing ZK proofs through the Wormhole bridge.
 
-5. **IPFS Integration:** Retrieve files from IPFS based on the ZK proofs presented by the recipients.
+## Technical Implementation of [Solana-EVM] File Transfer:
 
-   
+1. **Solana-EVM Bridge:** Establish a bridge between Solana and EVM networks for token transfer. Implement the conversion of files into tokens with ZK proofs.
+
+2. **Wormhole Integration:** Utilize Wormhole for cross-chain communication between Solana and EVM networks. Transfer tokens representing ZK proofs through the Wormhole bridge.
+
+---
+
+
 ```
 git clone https://github.com/briansmith/crypto-bench && cd crypto-bench && cargo update && cargo +nightly bench
 ```
-
 
 You must use Rust Nightly because `cargo bench` is used for these benchmarks,
 and only Right Nightly supports `cargo bench`.
@@ -224,13 +228,14 @@ benchmarks does not break them. Do this before submitting a pull request.
 latest version.
 
 `cargo +nightly bench -p crypto_bench_ring` runs all the tests for [_ring_](https://github.com/briansmith/ring).
+
+---
+
 | | _ring_ | rust-crypto | rust-nettle (Nettle) | rust-openssl (OpenSSL) | sodiumoxide (libsodium) | Windows CNG | Mac/iOS Common Crypto |
 |----------------------------------------------|:------------------:|:------------------:|----------------------|:----------------------:|:-----------------------:|:-----------:|:---------------------:|
 | ECDH (Suite B) key exchange | :white_check_mark: | | | | | | |
 
-![An-example-of-ECC-version-of-Diffie-Hellman-Protocol](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/338121bb-a462-40b1-a561-034dd9010c4f)
 
-3. **Zero-Knowledge Proofs for File Integrity:** To verify that a file has been transmitted without revealing its content, zero-knowledge proofs are utilized. These proofs allow the sender to prove that the file matches a publicly agreed-upon hash without disclosing the file itself.
 
 ```
 echo 'prepare phase1'
@@ -248,9 +253,6 @@ node ../../../snarkjs/build/cli.cjs powersoftau prepare phase2 pot12_beacon.ptau
 echo 'Verify the final ptau'
 node ../../../snarkjs/build/cli.cjs powersoftau verify pot12_final.ptau
 ```
-
-
-![20-Table6-1](https://github.com/virjilakrum/zk-lokomotive/assets/158029357/6f57ca6d-f074-4106-aed1-067ab9277003)
 
 * Decentralized Verification: The verification process, including the checking of zero-knowledge proofs, is performed on a blockchain network (e.g., Solana). This decentralized approach eliminates the need for a trusted third party, enhancing the security and privacy of the file transfer.
 
@@ -283,19 +285,6 @@ https://solana-labs.github.io/solana-web3.js/
     The solana_provider variable is used to create Anchor's Solana provider.
     The ix variable is used to create a command to interact with the smart contract.
     The function solana_provider.send_and_confirm is used to send the transaction to the Solana network.
-
-    __
-    *First, run for the frontend development server:*
-    __
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    # or
-    pnpm dev
-    # or
-    bun dev
-    ```
 
     Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
