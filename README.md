@@ -10,7 +10,9 @@ Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
 ## Team 
 
-![lokomotive](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/90ba0ad9-97ad-4546-a31c-7df99ca0a426)
+![loko](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/f8d680a6-c860-4c5e-a63f-7b80be2fed1a)
+
+
 
 
 
