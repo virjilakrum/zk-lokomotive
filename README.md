@@ -6,15 +6,17 @@
 Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
 
-![logo(3) 1](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/a5504168-988c-464f-bf15-e6a650f46586)
+<div align="center">
+  <img src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/a5504168-988c-464f-bf15-e6a650f46586" alt="logo" width="200"/>
+</div>
 
 ## Team 
 
 ![loko](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/f8d680a6-c860-4c5e-a63f-7b80be2fed1a)
 
-## Demo (Solana to Solana)
+## Demo Video (for Solana to Solana)
 
-
+* Since we can fully integrate this into the crosschain in the future, this demo only represents file transfer with zk on the Solana network and support is received from [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API) ([signaling](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Signaling_and_video_calling)) for **P2P** communication.
 https://github.com/zk-Lokomotive/zk-lokomotive-wormhole/assets/158029357/81a7a8bb-0802-4158-8f48-fb1ddf4f5989
 
 
