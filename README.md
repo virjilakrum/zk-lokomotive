@@ -1,7 +1,10 @@
 # zk-lokomotive (Zk Based Fully Secure and Trustless Multichain File Transfer System)
 
 ### [Solana Renaissance Hackathon Wormhole Best Multichain Track Winner 1st 😎🥇](https://earn.superteam.fun/listings/hackathon/build-multichain-apps-using-wormhole/) 
-<img width="575" alt="Ekran Resmi 2024-04-17 21 46 07" src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/1da98901-0a85-4ff9-b6ce-8e22b142efd8">
+
+<div align="center">
+  <img src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/1da98901-0a85-4ff9-b6ce-8e22b142efd8"alt="wormhole tweet" width="400"/>
+</div>
 
 Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
@@ -25,24 +28,24 @@ https://github.com/zk-Lokomotive/zk-lokomotive-wormhole/assets/158029357/81a7a8b
 
 ## Introduction to Private B2B File Transfer System
 
-* This project aims to create a secure and efficient file transfer system bridging [Solana](https://solana.com/tr/docs) and [Ethereum](https://ethereum.org/en/developers/docs/) networks by integrating [ZK](https://en.wikipedia.org/wiki/Zero-knowledge_proof), [Arweave](https://docs.arweave.org/developers), and [Wormhole](https://docs.wormhole.com/wormhole). ZK ensures file integrity and privacy, Arweave facilitates file storage, and Wormhole enables cross-chain token and data-transfer. In addition, we use [Celestia](https://docs.celestia.org/) in the data-layer  and nodes ([light nodes](https://docs.celestia.org/nodes/light-node)) to ensure data availability and to keep the information "live". 
+* This project aims to create a secure and efficient file transfer system bridging [Solana](https://solana.com/tr/docs) and [Ethereum](https://ethereum.org/en/developers/docs/) networks (**For now, we are trying to run it on these networks, and as we progress through milestones, we plan to make it available on all major networks and complete the integration with Wormhole.**) by integrating [ZK](https://en.wikipedia.org/wiki/Zero-knowledge_proof), [Arweave](https://docs.arweave.org/developers), and [Wormhole](https://docs.wormhole.com/wormhole). ZK ensures file integrity and privacy, Arweave facilitates file storage, and Wormhole enables cross-chain token and data-transfer. In addition, we use [Celestia](https://docs.celestia.org/) in the data-layer  and nodes ([light nodes](https://docs.celestia.org/nodes/light-node)) to ensure data availability and to keep the information "live". 
 
 This project encompasses file transfer scenarios within the **Solana-Solana** (![for demo](
 https://github.com/zk-Lokomotive/zk-lokomotive-wormhole/assets/158029357/81a7a8bb-0802-4158-8f48-fb1ddf4f5989)) and **Solana-EVM** ecosystems. 
 
----
 
-In the Solana-Solana file transfer scenario, WebRTC is employed instead of Wormhole, with the endpoints (IDs) being the users' wallet addresses on the Solana network. Within the Solana network, the file transfer process operates as follows: RSA keys are utilized to encrypt AES keys, facilitating their secure exchange between the two clients. Subsequently, the file is encrypted using the exchanged AES key and decrypted accordingly by the recipient.
+* The architecture undergoes a significant shift for file transfer between **all networks**. In this scenario, We establish a bridge between Solana and EVM networks. The file is encrypted with zero-knowledge proofs (ZK) and transformed into a token in exchange for tokens. This token, encapsulating the ZK proof of the file's integrity, traverses the Solana-EVM bridge via Wormhole. Upon reception, the recipient validates the ZK proof to claim the file. Additionally, I retrieve the file from Arweave, ensuring its integrity based on the verified proof.
 
----
-
-On the other hand, the architecture undergoes a significant shift for file transfer between Solana and EVM-based networks. In this scenario, I establish a bridge between Solana and EVM networks. The file is encrypted with zero-knowledge proofs (ZK) and transformed into a token in exchange for tokens. This token, encapsulating the ZK proof of the file's integrity, traverses the Solana-EVM bridge via Wormhole. Upon reception, the recipient validates the ZK proof to claim the file. Additionally, I retrieve the file from IPFS, ensuring its integrity based on the verified proof.
-
-In summary, this project implements a sophisticated file transfer mechanism, leveraging different technologies for seamless communication between Solana-Solana and Solana-EVM networks. Through meticulous encryption, tokenization, and validation processes, it ensures the secure and verifiable exchange of files while maintaining compatibility and interoperability across disparate blockchain ecosystems.
+* In summary, this project implements a sophisticated file transfer mechanism, leveraging different technologies for seamless communication between Solana-Solana and nonEVM-EVM networks. Through meticulous encryption, tokenization, and validation processes, it ensures the secure and verifiable exchange of files while maintaining compatibility and interoperability across disparate blockchain ecosystems.
 
 ## Motivation:
 
 Providing the amount of our data continues rapidly in the technological singularity. Traditional file formats often lack adequate privacy and security, especially when it comes to sensitive data. File services run on a central server, creating the risk of data breaches and privacy violations. We offer a different solution to this than traditional breaks, by combining the powerful capacities and polynomials of mathematics and the decentralized generality of Solana, thus challenging the trilemma.
+
+🏗️ Below the line it's not up to date.
+---
+
+
 
 ## Solution:
 
