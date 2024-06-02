@@ -12,7 +12,7 @@ Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
 ![loko](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/f8d680a6-c860-4c5e-a63f-7b80be2fed1a)
 
-## Demo (Solana-Solana|Web RTC)
+## Demo (Solana to Solana)
 
 
 https://github.com/zk-Lokomotive/zk-lokomotive-wormhole/assets/158029357/81a7a8bb-0802-4158-8f48-fb1ddf4f5989
@@ -21,11 +21,12 @@ https://github.com/zk-Lokomotive/zk-lokomotive-wormhole/assets/158029357/81a7a8b
 
 
 
-## Introduction
+## Introduction to Private B2B File Transfer System
 
-* This project aims to create a secure and efficient file transfer system bridging Solana and Ethereum networks by integrating ZK, IPFS, and Wormhole. ZK ensures file integrity and privacy, IPFS facilitates file storage, and Wormhole enables cross-chain token and data transfer.
+* This project aims to create a secure and efficient file transfer system bridging [Solana](https://solana.com/tr/docs) and [Ethereum](https://ethereum.org/en/developers/docs/) networks by integrating [ZK](https://en.wikipedia.org/wiki/Zero-knowledge_proof), [Arweave](https://docs.arweave.org/developers), and [Wormhole](https://docs.wormhole.com/wormhole). ZK ensures file integrity and privacy, Arweave facilitates file storage, and Wormhole enables cross-chain token and data-transfer. In addition, we use [Celestia](https://docs.celestia.org/) in the data-layer  and nodes ([light nodes](https://docs.celestia.org/nodes/light-node)) to ensure data availability and to keep the information "live". 
 
-This project encompasses file transfer scenarios within the **Solana-Solana** and **Solana-EVM** ecosystems. 
+This project encompasses file transfer scenarios within the **Solana-Solana** (![for demo](
+https://github.com/zk-Lokomotive/zk-lokomotive-wormhole/assets/158029357/81a7a8bb-0802-4158-8f48-fb1ddf4f5989)) and **Solana-EVM** ecosystems. 
 
 ---
 
