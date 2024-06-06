@@ -3,7 +3,7 @@
 ### [Solana Renaissance Hackathon Wormhole Best Multichain Track Winner 1st 😎🥇](https://earn.superteam.fun/listings/hackathon/build-multichain-apps-using-wormhole/) 
 
 <div align="center">
-  <img src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/1da98901-0a85-4ff9-b6ce-8e22b142efd8"alt="wormhole tweet" width="400"/>
+  <img src="https://github.com/zk-Lokomotive/zk-lokomotive-core/assets/158029357/55b0f3b1-5a46-4ba2-8081-b375ff8adcf1"alt="wormhole tweet" width="400"/>
 </div>
 
 Author: [Baturalp Güvenç](https://github.com/virjilakrum)
