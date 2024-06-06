@@ -44,6 +44,67 @@ https://github.com/zk-Lokomotive/zk-lokomotive-wormhole/assets/158029357/81a7a8b
 
 Providing the amount of our data continues rapidly in the technological singularity. Traditional file formats often lack adequate privacy and security, especially when it comes to sensitive data. File services run on a central server, creating the risk of data breaches and privacy violations. We offer a different solution to this than traditional breaks, by combining the powerful capacities and polynomials of mathematics and the decentralized generality of Solana, thus challenging the trilemma.
 
+
+### Arweave - Solana
+
+dApp for storage and send encrypted data using [Arweave](https://www.arweave.org/) 
+
+	1. Operations and Management on the Solana Network
+	- User Authentication and Authorization: Authentication and authorization of users are performed on the Solana network.
+	- Transaction Management: Sending and receiving data and other administrative operations are carried out on Solana.
+	- Payment Transactions: Payment transactions between users are realized by taking advantage of Solana's fast and low-cost structure.
+	2. Persistent Storage on Arweave Network
+	- Data Storage: Encrypted data is uploaded to the Arweave network and stored permanently.
+	- Data Access: Users can access data stored on Arweave through transactions performed on Solana.
+
+Process Steps
+
+	1. User Registration and Authentication
+	- Users create a wallet address on the Solana network and register.
+	- During registration, users are provided with a public key on Arweave.
+	2. Data Upload and Encryption
+	- The user selects the data they want to upload.
+	- The app generates an encryption key using the user's Solana wallet file.
+	- It encrypts the data with AES and uploads it to the Arweave network.
+	- The encryption key is encrypted using RSA with the user's Arweave public key and saved with a transaction on Solana.
+	3. Sending Data
+	- The user who wants to send the data initiates the transaction using the recipient's Solana wallet address.
+	- The recipient's Arweave public key is extracted on Solana.
+	- The encrypted data is uploaded to the Arweave network and the encrypted key is sent via a transaction on Solana.
+	4. Data Retrieval and Decryption
+	- The recipient generates their own private key using the Solana wallet file.
+	- It decrypts the encrypted key stored on Solana.
+	- With this key, it decrypts the data stored in Arweave.
+```js
+const arweave = Arweave.init({
+    host: 'arweave.net',// Hostname or IP address for a Arweave node
+    port: 80,           // Port, defaults to 1984
+    protocol: 'https',  // Network protocol http or https, defaults to http
+    timeout: 20000,     // Network request timeouts in milliseconds
+    logging: false,     // Enable network request logging
+})
+
+
+class FileMailer extends React.Component{
+    state = {
+        //file upload
+        fileLoading:false,
+        fileUpload:false,
+        fileRawData:'',
+        fileName:'',
+        //user address and public key
+        receiverArAddress:'',
+        receiverPublicKey:'',
+        receiverPushAddress:'',
+        receiverNoPublicKey:false,
+        receiverPublicKeyValid:false
+    }
+
+    change = e => {
+        this.setState({[e.target.name]: e.target.value})
+    }
+```
+
 🏗️ Below the line it's not up to date.
 ---
 
