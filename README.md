@@ -1,6 +1,8 @@
-# zk-lokomotive (Zk Based Fully Secure and Trustless Multichain File Transfer System)
+# zk-lokomotive  (Zk Based Fully Secure and Trustless Multichain File Transfer System)
 
-### [Solana Renaissance Hackathon Wormhole Best Multichain Track Winner 1st 😎🥇](https://earn.superteam.fun/listings/hackathon/build-multichain-apps-using-wormhole/) 
+* Zk based fully secure and trustless multichain file transfer system with EVM-Solana-Wormhole.
+
+### [Solana Renaissance Hackathon Wormhole Best Multichain Track Winner 1st 😎🥇](https://earn.superteam.fun/listings/hackathon/build-multichain-apps-using-wormhole/)
 
 <div align="center">
   <img src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/1da98901-0a85-4ff9-b6ce-8e22b142efd8"alt="wormhole tweet" width="400"/>
@@ -8,32 +10,27 @@
 
 Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
-
 <div align="center">
-  <img src="https://github.com/zk-Lokomotive/zk-lokomotive-core/assets/158029357/661fd27f-aceb-4c91-a6e3-61dae8d41882" alt="logo" width="200"/>
+  <img src="https://github.com/zk-Lokomotive/zk-lokomotive-sui/assets/158029357/e9a98533-894e-4902-9e8c-539d86d0e764" alt="logo" width="200"/>
 </div>
 
-## Team 
 
-![loko](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/f8d680a6-c860-4c5e-a63f-7b80be2fed1a)
+### **Demo Video (Sui-Avalanche)**
 
-## Demo Video (for Solana to Solana)
-
-https://github.com/zk-Lokomotive/zk-lokomotive-wormhole/assets/158029357/81a7a8bb-0802-4158-8f48-fb1ddf4f5989
-
-* Since we can fully integrate this into the crosschain in the future, this demo only represents file transfer with zk on the Solana network and support is received from [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API) ([signaling](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Signaling_and_video_calling)) for **P2P** communication.
+[Sui Demo](https://youtu.be/WpamMm3GP8U)
 
 
+### **Demo Video (Solana-Solana)**
+
+[Solana Demo](https://youtu.be/zspxfSJNXbs)
 
 
+---
 
-
-## Introduction to Private B2B File Transfer System
-
-* This project aims to create a secure and efficient file transfer system bridging [Solana](https://solana.com/tr/docs) and [Ethereum](https://ethereum.org/en/developers/docs/) networks (**For now, we are trying to run it on these networks, and as we progress through milestones, we plan to make it available on all major networks and complete the integration with Wormhole.**) by integrating [ZK](https://en.wikipedia.org/wiki/Zero-knowledge_proof), [Arweave](https://docs.arweave.org/developers), and [Wormhole](https://docs.wormhole.com/wormhole). ZK ensures file integrity and privacy, Arweave facilitates file storage, and Wormhole enables cross-chain token and data-transfer. In addition, we use [Celestia](https://docs.celestia.org/) in the data-layer  and nodes ([light nodes](https://docs.celestia.org/nodes/light-node)) to ensure data availability and to keep the information "live". 
+* This project aims to create a secure and efficient file transfer system bridging [Solana](https://solana.com/tr/docs) and [Ethereum](https://ethereum.org/en/developers/docs/) networks (**For now, we are trying to run it on these networks, and as we progress through milestones, we plan to make it available on all major networks and complete the integration with Wormhole.**) by integrating [ZK](https://en.wikipedia.org/wiki/Zero-knowledge_proof), [Arweave](https://docs.arweave.org/developers), and [Wormhole](https://docs.wormhole.com/wormhole). ZK ensures file integrity and privacy, Arweave facilitates file storage, and Wormhole enables cross-chain token and data-transfer. In addition, we use [Celestia](https://docs.celestia.org/) in the data-layer  and nodes ([light nodes](https://docs.celestia.org/nodes/light-node)) to ensure data availability and to keep the information "live".
 
 This project encompasses file transfer scenarios within the **Solana-Solana** (![for demo](
-https://github.com/zk-Lokomotive/zk-lokomotive-wormhole/assets/158029357/81a7a8bb-0802-4158-8f48-fb1ddf4f5989)) and **Solana-EVM** ecosystems. 
+https://github.com/zk-Lokomotive/zk-lokomotive-wormhole/assets/158029357/81a7a8bb-0802-4158-8f48-fb1ddf4f5989)) and **Solana-EVM** ecosystems.
 
 
 * The architecture undergoes a significant shift for file transfer between **all networks**. In this scenario, We establish a bridge between Solana and EVM networks. The file is encrypted with zero-knowledge proofs (ZK) and transformed into a token in exchange for tokens. This token, encapsulating the ZK proof of the file's integrity, traverses the Solana-EVM bridge via Wormhole. Upon reception, the recipient validates the ZK proof to claim the file. Additionally, I retrieve the file from Arweave, ensuring its integrity based on the verified proof.
@@ -44,10 +41,34 @@ https://github.com/zk-Lokomotive/zk-lokomotive-wormhole/assets/158029357/81a7a8b
 
 Providing the amount of our data continues rapidly in the technological singularity. Traditional file formats often lack adequate privacy and security, especially when it comes to sensitive data. File services run on a central server, creating the risk of data breaches and privacy violations. We offer a different solution to this than traditional breaks, by combining the powerful capacities and polynomials of mathematics and the decentralized generality of Solana, thus challenging the trilemma.
 
+---
+
+## **1. Introduction**
+### **1.1 Project Overview**
+Our project aims to enable secure, private, and efficient file transfers across different blockchain networks. Utilizing zkSNARKs for encryption, Arweave for decentralized storage, and the Wormhole bridge for cross-chain token transfer, we ensure that files can be shared securely from Aptos to EVM networks.
+
+### **1.2 Problem Statement**
+Traditional file transfer methods often suffer from privacy and security vulnerabilities. Centralized servers are prone to data breaches, and current blockchain solutions lack seamless interoperability.
+
+## **1.3 Motivation:**
+
+Providing the amount of our data continues rapidly in the technological singularity. Traditional file formats often lack adequate privacy and security, especially when it comes to sensitive data. File services run on a central server, creating the risk of data breaches and privacy violations. We offer a different solution to this than traditional breaks, by combining the powerful capacities and polynomials of mathematics and the decentralized generality of Solana, thus challenging the trilemma.
+
+## **2. Objectives**
+
+### Demo Architecture
+<img width="1147" alt="Ekran Resmi 2024-07-13 11 54 45" src="https://github.com/user-attachments/assets/737c865f-6109-41fe-92d1-790cea185605">
+
+
+- Encrypt files using zkSNARKs to ensure privacy and integrity.
+- Store encrypted files on Arweave with a unique file hash.
+- Tokenize the file hash for transfer across blockchain networks.
+- Utilize the Wormhole bridge to securely transfer tokenized assets from EVM to Solana.
+- Verify and retrieve the file on the receiving network, ensuring the file's integrity.
 
 ### Arweave - Solana
 
-dApp for storage and send encrypted data using [Arweave](https://www.arweave.org/) 
+dApp for storage and send encrypted data using [Arweave](https://www.arweave.org/)
 
 	1. Operations and Management on the Solana Network
 	- User Authentication and Authorization: Authentication and authorization of users are performed on the Solana network.
@@ -57,24 +78,22 @@ dApp for storage and send encrypted data using [Arweave](https://www.arweave.org
 	- Data Storage: Encrypted data is uploaded to the Arweave network and stored permanently.
 	- Data Access: Users can access data stored on Arweave through transactions performed on Solana.
 
-Process Steps
+### System Elements
+The system elements are/will be described and discussed in the ZKL System Architecture document. This section is to provide a reminder/reference.
+1. Key Derivation Service
+The Key Derivation Service (or KDS for short) provides
+1. a deterministic Curve25519 keypair generator from BIP-39 mnemonics,
+2. a pseudo-random BIP-39 mnemonic generator through web-bip-39 package.
+2. Cross-chain Identity Registry
+The Cross-chain Identity Registry (or CCIR for short) provides a method to look up identities and their corresponding public keys.
+3. Encrypted File Storage
+The Encrypted File Storage is a distributed storage solution that allows the recipient to retrieve payloads that were uploaded for them.
+4. Client
+The client (the sender) generates the encrypted payload to be sent to the reciever, whose public key is retrieved via the CCIR. The workflow of sending an
+encrypted file for a recipient is described in the next section.
 
-	1. User Registration and Authentication
-	- Users create a wallet address on the Solana network and register.
-	- During registration, users are provided with a public key on Arweave.
-	2. Data Upload and Encryption
-	- The user selects the data they want to upload.
-	- The app generates an encryption key using the user's Solana wallet file.
-	- It encrypts the data with AES and uploads it to the Arweave network.
-	- The encryption key is encrypted using RSA with the user's Arweave public key and saved with a transaction on Solana.
-	3. Sending Data
-	- The user who wants to send the data initiates the transaction using the recipient's Solana wallet address.
-	- The recipient's Arweave public key is extracted on Solana.
-	- The encrypted data is uploaded to the Arweave network and the encrypted key is sent via a transaction on Solana.
-	4. Data Retrieval and Decryption
-	- The recipient generates their own private key using the Solana wallet file.
-	- It decrypts the encrypted key stored on Solana.
-	- With this key, it decrypts the data stored in Arweave.
+
+
 ```js
 const arweave = Arweave.init({
     host: 'arweave.net',// Hostname or IP address for a Arweave node
@@ -391,5 +410,3 @@ _Anchor Solana Cli Build_
 `anchor test`
 
 ![Thank You](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/af24913b-b649-4bf5-90e1-fdd99e68ca51)
-
-
