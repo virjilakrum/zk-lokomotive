@@ -57,7 +57,7 @@ Providing the amount of our data continues rapidly in the technological singular
 ## **2. Objectives**
 
 ### Demo Architecture
-<img width="1147" alt="Ekran Resmi 2024-07-13 11 54 45" src="https://github.com/user-attachments/assets/737c865f-6109-41fe-92d1-790cea185605">
+<img width="1147" alt="demo arch" src="https://github.com/user-attachments/assets/737c865f-6109-41fe-92d1-790cea185605">
 
 
 - Encrypt files using zkSNARKs to ensure privacy and integrity.
@@ -92,6 +92,7 @@ The Encrypted File Storage is a distributed storage solution that allows the rec
 The client (the sender) generates the encrypted payload to be sent to the reciever, whose public key is retrieved via the CCIR. The workflow of sending an
 encrypted file for a recipient is described in the next section.
 
+<img width="836" alt="formulas" src="https://github.com/user-attachments/assets/77394956-0ad5-40bc-927d-26d061f56aca">
 
 
 ```js
