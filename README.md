@@ -261,23 +261,14 @@ pub enum Instruction{
 
 - The provided Rust struct ZkFile and its methods demonstrate the usage of ZK to encrypt and prove files' integrity. from_bytes function encrypts a file content using ZK, while to_data function converts a ZkFile object to ZkFileData format.
 
-```rust
 
-use ipfs_api::IpfsClient;
-
-fn upload_file(client: &IpfsClient, file_content: &[u8]) -> Result<String> {
-    let mut add_result = client.add(file_content)?;
-    Ok(add_result.hash.to_string())
-}
-```
-
-- The provided Rust function upload_file demonstrates the usage of IPFS-http-client to interact with IPFS. It uploads file content to IPFS and returns the IPFS hash.
+- The provided Rust function upload_file demonstrates the usage of Arweave address hash to interact with Arweave. It uploads file content to Arweave and returns the Arweave hash.
 
 ### Connection Overview
 
     File content is encrypted using ZKFile, generating a ZK proof.
-    Encrypted file is uploaded to IPFS, obtaining an IPFS hash.
-    ZkFile object, IPFS hash, and other metadata are converted to ZKFileData format.
+    Encrypted file is uploaded to Arweave, obtaining an Arweave hash.
+    ZkFile object, Arweave hash, and other metadata are converted to ZKFileData format.
     ZKFileData object is transferred to the recipient using Wormhole bridge.
 
 # Architecture Definition:
@@ -288,17 +279,12 @@ ZK File Transfer is a secure and private method for transferring files between t
 
 
 ## Technical Implementation of [Solana-Solana] File Transfer:
-The architecture comprises two main components: the Solana-Solana file transfer system using WebRTC and the Solana-EVM file transfer system with the bridge architecture.
-
-    Utilizes WebRTC for secure file transfer between users on the Solana network.
-    Encryption and decryption of files using RSA and AES keys.
-    Direct exchange of encrypted files between clients.
 
 1. **WebRTC Configuration:** Utilize the RTCPeerConnection API to configure the WebRTC connection. Include STUN/TURN servers in the configuration for NAT traversal.
 
 2. **Encryption and Decryption:** Use RSA keys for encryption and decryption of AES keys. Implement the exchange of AES keys between clients securely.
 
-3. **IPFS Integration:** Retrieve files from IPFS based on the ZK proofs presented by the recipients.
+3. **Arweave Integration:** Retrieve files from Arweave based on the ZK proofs presented by the recipients.
 
 
 ## Technical Implementation of [Solana-EVM] File Transfer:
