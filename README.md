@@ -45,7 +45,7 @@ Providing the amount of our data continues rapidly in the technological singular
 
 ## **1. Introduction**
 ### **1.1 Project Overview**
-Our project aims to enable secure, private, and efficient file transfers across different blockchain networks. Utilizing zkSNARKs for encryption, Arweave for decentralized storage, and the Wormhole bridge for cross-chain token transfer, we ensure that files can be shared securely from Aptos to EVM networks.
+Our project aims to enable secure, private, and efficient file transfers across different blockchain networks. Utilizing zkSNARKs for encryption, Arweave for decentralized storage, and the Wormhole bridge for cross-chain token transfer, we ensure that files can be shared securely from EVM to Solana networks.
 
 ### **1.2 Problem Statement**
 Traditional file transfer methods often suffer from privacy and security vulnerabilities. Centralized servers are prone to data breaches, and current blockchain solutions lack seamless interoperability.
@@ -190,7 +190,7 @@ Process:
     Alice encrypts the research file with zero-knowledge proofs (ZK) and converts it into a token for transfer.
     Alice initiates the transfer of the tokenized file through the Solana-EVM bridge via Wormhole.
     Collaborators on the EVM-based network receive the token and validate the ZK proof to claim the file.
-    Alice retrieves the file from IPFS to ensure its integrity based on the verified proof.
+    Alice retrieves the file from Arweave to ensure its integrity based on the verified proof.
 
 Outcome:
 
