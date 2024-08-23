@@ -51,8 +51,10 @@ Providing the amount of our data continues rapidly in the technological singular
 
 ## **2. Objectives**
 
-### Demo Architecture
-<img width="1147" alt="demo arch" src="https://github.com/user-attachments/assets/737c865f-6109-41fe-92d1-790cea185605">
+### Architecture
+
+![ZKL-ARCH](https://github.com/user-attachments/assets/a987b7fc-fc0d-43c5-abbe-200604d9a407)
+
 
 
 - Encrypt files using zkSNARKs to ensure privacy and integrity.
