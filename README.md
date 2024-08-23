@@ -1,10 +1,6 @@
 # zk-lokomotive  (Zk Based Fully Secure and Trustless Multichain File Transfer System)
 
-* Zk based fully secure and trustless multichain file transfer system with EVM-Solana-Wormhole.
-
-### [Solana Renaissance Hackathon Wormhole Best Multichain Track Winner 1st 😎🥇](https://earn.superteam.fun/listings/hackathon/build-multichain-apps-using-wormhole/)
-
-
+* Zk based fully secure and trustless multichain file transfer system with [EVM-Solana-Sui-Avalanche-Wormhole].
 
 Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
@@ -435,6 +431,9 @@ _Anchor Solana Cli Build_
 <div align="center">
   <img src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/1da98901-0a85-4ff9-b6ce-8e22b142efd8"alt="wormhole tweet" width="400"/>
 </div>
+
+### [Solana Renaissance Hackathon Wormhole Best Multichain Track Winner 1st 😎🥇](https://earn.superteam.fun/listings/hackathon/build-multichain-apps-using-wormhole/)
+
 
 Sui Overflow Local Track (Winner🥇) | May 2024
 EDCON Japan (Finalist) | May 2024
