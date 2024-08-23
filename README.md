@@ -4,9 +4,7 @@
 
 ### [Solana Renaissance Hackathon Wormhole Best Multichain Track Winner 1st 😎🥇](https://earn.superteam.fun/listings/hackathon/build-multichain-apps-using-wormhole/)
 
-<div align="center">
-  <img src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/1da98901-0a85-4ff9-b6ce-8e22b142efd8"alt="wormhole tweet" width="400"/>
-</div>
+
 
 Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
@@ -14,6 +12,7 @@ Author: [Baturalp Güvenç](https://github.com/virjilakrum)
   <img src="https://github.com/zk-Lokomotive/zk-lokomotive-sui/assets/158029357/e9a98533-894e-4902-9e8c-539d86d0e764" alt="logo" width="200"/>
 </div>
 
+---
 
 ### **Demo Video (Sui-Avalanche)**
 
@@ -24,8 +23,8 @@ Author: [Baturalp Güvenç](https://github.com/virjilakrum)
 
 [Solana Demo](https://youtu.be/zspxfSJNXbs)
 
-
 ---
+
 
 * This project aims to create a secure and efficient file transfer system bridging [Solana](https://solana.com/tr/docs) and [Ethereum](https://ethereum.org/en/developers/docs/) networks (**For now, we are trying to run it on these networks, and as we progress through milestones, we plan to make it available on all major networks and complete the integration with Wormhole.**) by integrating [ZK](https://en.wikipedia.org/wiki/Zero-knowledge_proof), [Arweave](https://docs.arweave.org/developers), and [Wormhole](https://docs.wormhole.com/wormhole). ZK ensures file integrity and privacy, Arweave facilitates file storage, and Wormhole enables cross-chain token and data-transfer. In addition, we use [Celestia](https://docs.celestia.org/) in the data-layer  and nodes ([light nodes](https://docs.celestia.org/nodes/light-node)) to ensure data availability and to keep the information "live".
 
@@ -428,5 +427,20 @@ _Anchor Solana Cli Build_
 `anchor build`
 
 `anchor test`
+
+
+## Prizes 🏆
+---
+
+<div align="center">
+  <img src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/1da98901-0a85-4ff9-b6ce-8e22b142efd8"alt="wormhole tweet" width="400"/>
+</div>
+
+Sui Overflow Local Track (Winner🥇) | May 2024
+EDCON Japan (Finalist) | May 2024
+Solana Global Renaissance Hackathon Multichain Track (Winner🥇) | April 2024
+Solana Demoday (Winner🥈) | March 2024
+
+---
 
 ![Thank You](https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/af24913b-b649-4bf5-90e1-fdd99e68ca51)
