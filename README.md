@@ -173,6 +173,9 @@ As a user of the ZKL-Last platform, I want to securely transfer tokens and send 
    - Conduct thorough security audits of all smart contracts and programs.
    - Perform end-to-end testing of the entire cross-chain transfer process.
 
+
+
+
 By implementing these features, ZKL-Last will provide a secure, efficient, and user-friendly cross-chain token transfer and messaging system leveraging Wormhole's advanced interoperability protocol.
 ```js
 const arweave = Arweave.init({
@@ -293,55 +296,6 @@ Outcome:
     User Interface: An easy-to-use web or mobile interface to follow the entire process.
     Data Analytics: Analytics operations on data stored in Ethereum & Solana.
 
-## Used Technologies:
-
-### Wormhole Integration
-
-```rust
-
-
-use anchor_lang::prelude::*;
-use borsh::{BorshDeserialize, BorshSerialize};
-use std::{
-    io::Write,
-};
-
-#[derive(AnchorDeserialize, AnchorSerialize)]
-pub struct PostMessageData {
-    /// Unique nonce for this message
-    pub nonce: u32,
-
-    /// Message payload
-    pub payload: Vec<u8>,
-
-    /// Commitment Level required for an attestation to be produced
-    pub consistency_level: ConsistencyLevel,
-}
-
-#[derive(AnchorDeserialize, AnchorSerialize)]
-pub enum ConsistencyLevel {
-    Confirmed,
-    Finalized
-}
-
-#[derive(AnchorDeserialize, AnchorSerialize)]
-pub enum Instruction{
-    Initialize,
-    PostMessage,
-    PostVAA,
-    SetFees,
-    TransferFees,
-    UpgradeContract,
-    UpgradeGuardianSet,
-    VerifySignatures,
-}
-
-```
-
-- The provided Rust struct ZkFile and its methods demonstrate the usage of ZK to encrypt and prove files' integrity. from_bytes function encrypts a file content using ZK, while to_data function converts a ZkFile object to ZkFileData format.
-
-
-- The provided Rust function upload_file demonstrates the usage of Arweave address hash to interact with Arweave. It uploads file content to Arweave and returns the Arweave hash.
 
 ### Connection Overview
 
