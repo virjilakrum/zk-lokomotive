@@ -22,9 +22,9 @@
 
 ## Demo
 ---
-* [Avalanche-Sui Version Demo](https://youtu.be/WpamMm3GP8U)
+* NEW: [Avalanche-Sui Version Demo](https://youtu.be/WpamMm3GP8U)
 ---
-* [Solana-Solana Version Demo ](https://youtu.be/zspxfSJNXbs)
+* OLD: [Solana-Solana Version Demo ](https://youtu.be/zspxfSJNXbs)
 ---
 ## Introduction
 
