@@ -6,6 +6,7 @@
 
 ## Table of Contents
 
+- [Demo Videos](#demo)
 - [Introduction](#introduction)
 - [System Architecture](#system-architecture)
 - [Key Components](#key-components)
@@ -19,6 +20,12 @@
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
 
+## Demo
+---
+* [Avalanche-Sui Version Demo](https://youtu.be/WpamMm3GP8U)
+---
+* [Solana-Solana Version Demo ](https://youtu.be/zspxfSJNXbs)
+---
 ## Introduction
 
 zk-lokomotive is an advanced, zero-knowledge proof-based file transfer system designed to operate seamlessly across multiple blockchain networks, including EVM-compatible chains, Solana, and Sui. By leveraging state-of-the-art zero-knowledge cryptography, Arweave for decentralized storage, and Wormhole for cross-chain interoperability, zk-lokomotive provides an unparalleled solution for secure, private, and efficient file transfers in a trustless environment.
@@ -333,8 +340,7 @@ As a user of the ZKL-Last platform, I want to securely transfer tokens and send 
 ### Contributors
 
 - [Baturalp Güvenç](https://github.com/virjilakrum) - Fullstack Blockchain Developer
-- [Yigid Balaban](https://github.com/fybx) - Cryptography Specialist / UI & UX
-- [Yunus Emre Yoldaş](https://github.com/gAtrium) - Backend Developer
+
 
 ## License
 
