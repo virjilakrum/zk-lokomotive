@@ -361,6 +361,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 - Solana Minihackathon (1st Place) - March 2024 🥇
 - Solana Demoday (2nd Place) - March 2024 🥈
 - EDCON Japan (Finalist) - May 2024 
+- Maybe Encode Hackathon - Aug 2024 🤫
 
 
 ---
