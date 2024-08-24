@@ -342,6 +342,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgements
 
+**Encode Project ID:** `f8zlq506ekpdpdnjxf8zlysubo9pi2a0`
 - [Wormhole](https://wormhole.com/) for cross-chain interoperability
 - [Arweave](https://www.arweave.org/) for decentralized storage
 - [Solana](https://solana.com/) for high-performance blockchain infrastructure
