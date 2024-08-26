@@ -19,7 +19,11 @@ contract WormholeMessenger is Ownable {
 
     mapping(uint16 => bytes32) public bridgeContracts;
 
-    constructor(address _wormhole, uint8 _targetChain, address _wormholeToken) Ownable(msg.sender) {
+    constructor(
+        address _wormhole,
+        uint8 _targetChain,
+        address _wormholeToken
+    ) Ownable(msg.sender) {
         wormhole = IWormhole(_wormhole);
         targetChain = _targetChain;
         wormholeToken = IERC20(_wormholeToken);
@@ -53,10 +57,20 @@ contract WormholeMessenger is Ownable {
         require(amount > 0, "Miktar sifirdan buyuk olmali");
 
         uint256 messageFee = wormhole.messageFee();
-        require(wormholeToken.balanceOf(msg.sender) >= amount + messageFee, "Yetersiz bakiye");
+        require(
+            wormholeToken.balanceOf(msg.sender) >= amount + messageFee,
+            "Yetersiz bakiye"
+        );
 
-        wormholeToken.safeTransferFrom(msg.sender, address(this), amount + messageFee);
-        wormholeToken.safeApprove(address(wormhole), messageFee);
+        wormholeToken.safeTransferFrom(
+            msg.sender,
+            address(this),
+            amount + messageFee
+        );
+        require(
+            wormholeToken.approve(address(wormhole), messageFee),
+            "Token onayi basarisiz"
+        );
 
         bytes memory payload = abi.encode(msg.sender, _hash, amount);
 
@@ -71,11 +85,20 @@ contract WormholeMessenger is Ownable {
         emit HashSent(msg.sender, _hash, sequence);
     }
 
-    function verifyVM(IWormhole.VM memory vm) public view returns (bool) {
-        return wormhole.parseAndVerifyVM(vm) == IWormhole.VM_STATUS_VALID;
+    function verifyVM(
+        bytes memory encodedVM
+    )
+        public
+        view
+        returns (IWormhole.VM memory vm, bool valid, string memory reason)
+    {
+        return wormhole.parseAndVerifyVM(encodedVM);
     }
 
-    function setBridgeContract(uint16 chainId, bytes32 bridgeContract) external onlyOwner {
+    function setBridgeContract(
+        uint16 chainId,
+        bytes32 bridgeContract
+    ) external onlyOwner {
         bridgeContracts[chainId] = bridgeContract;
         emit BridgeContractSet(chainId, bridgeContract);
     }
