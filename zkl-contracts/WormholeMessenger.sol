@@ -10,7 +10,7 @@ contract WormholeMessenger is Ownable {
     using SafeERC20 for IERC20;
 
     IWormhole public wormhole;
-    uint16 public targetChain;
+    uint8 public targetChain;
     uint256 public nextSequence;
     IERC20 public wormholeToken;
 
@@ -19,7 +19,7 @@ contract WormholeMessenger is Ownable {
 
     mapping(uint16 => bytes32) public bridgeContracts;
 
-    constructor(address _wormhole, uint16 _targetChain, address _wormholeToken) {
+    constructor(address _wormhole, uint8 _targetChain, address _wormholeToken) Ownable(msg.sender) {
         wormhole = IWormhole(_wormhole);
         targetChain = _targetChain;
         wormholeToken = IERC20(_wormholeToken);
@@ -80,7 +80,7 @@ contract WormholeMessenger is Ownable {
         emit BridgeContractSet(chainId, bridgeContract);
     }
 
-    function setTargetChain(uint16 _newTargetChain) external onlyOwner {
+    function setTargetChain(uint8 _newTargetChain) external onlyOwner {
         targetChain = _newTargetChain;
     }
 
@@ -100,4 +100,3 @@ contract WormholeMessenger is Ownable {
         IERC20(token).safeTransfer(owner(), amount);
     }
 }
-
