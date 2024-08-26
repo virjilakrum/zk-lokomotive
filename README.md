@@ -126,71 +126,94 @@ Elliptic Curve Integrated Encryption Scheme (ECIES) is used for secure key excha
 
 ## Technical Implementation 🏗️
 
-### Smart Contract for File Transfer (Solidity)
+### Wormhole Contract for File Transfer (Solidity)
 
 ```solidity
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.13;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "./interfaces/IWormhole.sol";
 
-contract ZKFileTransfer is Ownable {
-    IERC20 public token;
-    mapping(bytes32 => bool) public completedTransfers;
+contract WormholeMessenger is Ownable {
+    using SafeERC20 for IERC20;
 
-    event FileTransferred(bytes32 indexed fileHash, address indexed recipient);
+    IWormhole public wormhole;
+    uint16 public targetChain;
+    uint256 public nextSequence;
+    IERC20 public wormholeToken;
 
-    constructor(address _token) {
-        token = IERC20(_token);
+    event HashSent(address indexed sender, bytes32 hash, uint64 sequence);
+    event BridgeContractSet(uint16 chainId, bytes32 newBridgeContract);
+
+    mapping(uint16 => bytes32) public bridgeContracts;
+
+    constructor(address _wormhole, uint16 _targetChain, address _wormholeToken) {
+        wormhole = IWormhole(_wormhole);
+        targetChain = _targetChain;
+        wormholeToken = IERC20(_wormholeToken);
     }
-
-    function transferFile(bytes32 fileHash, address recipient, uint256 amount) external {
-        require(!completedTransfers[fileHash], "Transfer already completed");
-        require(token.transferFrom(msg.sender, recipient, amount), "Token transfer failed");
-
-        completedTransfers[fileHash] = true;
-        emit FileTransferred(fileHash, recipient);
-    }
-
-    // Additional functions for ZK proof verification and file retrieval
-    function verifyZKProof(bytes32 fileHash, bytes calldata proof) external view returns (bool) {
-        // Implement ZK proof verification logic
-    }
-
-    function retrieveFile(bytes32 fileHash) external view returns (string memory) {
-        require(completedTransfers[fileHash], "File not transferred");
-        // Implement file retrieval logic
-    }
-}
 ```
 
 ### Arweave Integration (JavaScript)
 
 ```javascript
-const Arweave = require('arweave');
+'use client';
+
+import { useState } from 'react';
+import Arweave from 'arweave';
 
 const arweave = Arweave.init({
-    host: 'arweave.net',
-    port: 443,
-    protocol: 'https'
+  host: 'arweave.net',
+  port: 443,
+  protocol: 'https',
 });
 
-async function uploadEncryptedFile(encryptedData, tags) {
-    const transaction = await arweave.createTransaction({ data: encryptedData });
-    
-    tags.forEach(tag => {
-        transaction.addTag(tag.name, tag.value);
-    });
+export default function FileUpload({ onUpload, walletKey }) {
+  const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-    await arweave.transactions.sign(transaction);
-    const response = await arweave.transactions.post(transaction);
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
 
-    return transaction.id;
-}
+  const handleUpload = async () => {
+    if (!file || !walletKey) return;
 
-async function retrieveEncryptedFile(transactionId) {
-    const transaction = await arweave.transactions.get(transactionId);
-    return transaction.data;
+    setLoading(true);
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+
+    reader.onloadend = async () => {
+      const data = new Uint8Array(reader.result);
+      const transaction = await arweave.createTransaction({ data }, walletKey);
+
+      transaction.addTag('Content-Type', file.type);
+
+      await arweave.transactions.sign(transaction, walletKey);
+      const response = await arweave.transactions.post(transaction);
+
+      if (response.status === 200) {
+        const txId = transaction.id;
+        const imageUrl = `https://arweave.net/${txId}`;
+        onUpload(imageUrl);
+      } else {
+        console.error('Failed to upload file to Arweave');
+      }
+
+      setLoading(false);
+    };
+  };
+
+  return (
+    <div>
+      <input type="file" onChange={handleFileChange} />
+      <button onClick={handleUpload} disabled={!file || loading}>
+        {loading ? 'Uploading...' : 'Upload to Arweave'}
+      </button>
+    </div>
+  );
 }
 ```
 
