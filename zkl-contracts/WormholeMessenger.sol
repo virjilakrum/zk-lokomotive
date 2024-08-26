@@ -30,9 +30,6 @@ interface IWormhole {
     ) external payable returns (uint64 sequence);
 
     function parseAndVerifyVM(VM memory vm) external view returns (uint8);
-
-    uint8 constant VM_STATUS_VALID = 1;
-    uint8 constant VM_STATUS_INVALID = 0;
 }
 
 contract WormholeMessenger is Ownable {
@@ -42,6 +39,9 @@ contract WormholeMessenger is Ownable {
     uint8 public targetChain;
     uint256 public nextSequence;
     IERC20 public wormholeToken;
+
+    uint8 private constant VM_STATUS_VALID = 1;
+    uint8 private constant VM_STATUS_INVALID = 0;
 
     event HashSent(address indexed sender, bytes32 hash, uint64 sequence);
     event BridgeContractSet(uint16 chainId, bytes32 newBridgeContract);
@@ -115,7 +115,7 @@ contract WormholeMessenger is Ownable {
     }
 
     function verifyVM(IWormhole.VM memory vm) public view returns (bool) {
-        return wormhole.parseAndVerifyVM(vm) == IWormhole.VM_STATUS_VALID;
+        return wormhole.parseAndVerifyVM(vm) == VM_STATUS_VALID;
     }
 
     function setBridgeContract(
