@@ -56,7 +56,8 @@ contract WormholeMessenger is Ownable {
         require(wormholeToken.balanceOf(msg.sender) >= amount + messageFee, "Yetersiz bakiye");
 
         wormholeToken.safeTransferFrom(msg.sender, address(this), amount + messageFee);
-        wormholeToken.safeApprove(address(wormhole), messageFee);
+        // Değişiklik burada: safeApprove yerine approve kullanıyoruz
+        require(wormholeToken.approve(address(wormhole), messageFee), "Token onayi basarisiz");
 
         bytes memory payload = abi.encode(msg.sender, _hash, amount);
 
