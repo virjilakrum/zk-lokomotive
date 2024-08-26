@@ -4,33 +4,7 @@ pragma solidity ^0.8.13;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-
-interface IWormhole {
-    struct VM {
-        uint8 version;
-        uint32 timestamp;
-        uint32 nonce;
-        uint16 emitterChainId;
-        bytes32 emitterAddress;
-        uint64 sequence;
-        uint8 consistencyLevel;
-        bytes payload;
-        uint32 guardianSetIndex;
-        bytes32 hash;
-        bytes32[] signatures;
-        bytes32 initialGuardianSetIndex;
-    }
-
-    function messageFee() external view returns (uint256);
-
-    function publishMessage(
-        uint32 nonce,
-        bytes memory payload,
-        uint8 consistencyLevel
-    ) external payable returns (uint64 sequence);
-
-    function parseAndVerifyVM(VM memory vm) external view returns (uint8);
-}
+import "./interfaces/IWormhole.sol";
 
 contract WormholeMessenger is Ownable {
     using SafeERC20 for IERC20;
@@ -39,9 +13,6 @@ contract WormholeMessenger is Ownable {
     uint8 public targetChain;
     uint256 public nextSequence;
     IERC20 public wormholeToken;
-
-    uint8 private constant VM_STATUS_VALID = 1;
-    uint8 private constant VM_STATUS_INVALID = 0;
 
     event HashSent(address indexed sender, bytes32 hash, uint64 sequence);
     event BridgeContractSet(uint16 chainId, bytes32 newBridgeContract);
@@ -114,8 +85,14 @@ contract WormholeMessenger is Ownable {
         emit HashSent(msg.sender, _hash, sequence);
     }
 
-    function verifyVM(IWormhole.VM memory vm) public view returns (bool) {
-        return wormhole.parseAndVerifyVM(vm) == VM_STATUS_VALID;
+    function verifyVM(
+        bytes memory encodedVM
+    )
+        public
+        view
+        returns (IWormhole.VM memory vm, bool valid, string memory reason)
+    {
+        return wormhole.parseAndVerifyVM(encodedVM);
     }
 
     function setBridgeContract(
