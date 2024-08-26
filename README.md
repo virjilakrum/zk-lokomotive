@@ -159,30 +159,61 @@ contract WormholeMessenger is Ownable {
 ### Arweave Integration (JavaScript)
 
 ```javascript
-const Arweave = require('arweave');
+'use client';
+
+import { useState } from 'react';
+import Arweave from 'arweave';
 
 const arweave = Arweave.init({
-    host: 'arweave.net',
-    port: 443,
-    protocol: 'https'
+  host: 'arweave.net',
+  port: 443,
+  protocol: 'https',
 });
 
-async function uploadEncryptedFile(encryptedData, tags) {
-    const transaction = await arweave.createTransaction({ data: encryptedData });
-    
-    tags.forEach(tag => {
-        transaction.addTag(tag.name, tag.value);
-    });
+export default function FileUpload({ onUpload, walletKey }) {
+  const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-    await arweave.transactions.sign(transaction);
-    const response = await arweave.transactions.post(transaction);
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
 
-    return transaction.id;
-}
+  const handleUpload = async () => {
+    if (!file || !walletKey) return;
 
-async function retrieveEncryptedFile(transactionId) {
-    const transaction = await arweave.transactions.get(transactionId);
-    return transaction.data;
+    setLoading(true);
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+
+    reader.onloadend = async () => {
+      const data = new Uint8Array(reader.result);
+      const transaction = await arweave.createTransaction({ data }, walletKey);
+
+      transaction.addTag('Content-Type', file.type);
+
+      await arweave.transactions.sign(transaction, walletKey);
+      const response = await arweave.transactions.post(transaction);
+
+      if (response.status === 200) {
+        const txId = transaction.id;
+        const imageUrl = `https://arweave.net/${txId}`;
+        onUpload(imageUrl);
+      } else {
+        console.error('Failed to upload file to Arweave');
+      }
+
+      setLoading(false);
+    };
+  };
+
+  return (
+    <div>
+      <input type="file" onChange={handleFileChange} />
+      <button onClick={handleUpload} disabled={!file || loading}>
+        {loading ? 'Uploading...' : 'Upload to Arweave'}
+      </button>
+    </div>
+  );
 }
 ```
 
