@@ -4,7 +4,36 @@ pragma solidity ^0.8.13;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "./interfaces/IWormhole.sol";
+
+interface IWormhole {
+    struct VM {
+        uint8 version;
+        uint32 timestamp;
+        uint32 nonce;
+        uint16 emitterChainId;
+        bytes32 emitterAddress;
+        uint64 sequence;
+        uint8 consistencyLevel;
+        bytes payload;
+        uint32 guardianSetIndex;
+        bytes32 hash;
+        bytes32[] signatures;
+        bytes32 initialGuardianSetIndex;
+    }
+
+    function messageFee() external view returns (uint256);
+
+    function publishMessage(
+        uint32 nonce,
+        bytes memory payload,
+        uint8 consistencyLevel
+    ) external payable returns (uint64 sequence);
+
+    function parseAndVerifyVM(VM memory vm) external view returns (uint8);
+
+    uint8 constant VM_STATUS_VALID = 1;
+    uint8 constant VM_STATUS_INVALID = 0;
+}
 
 contract WormholeMessenger is Ownable {
     using SafeERC20 for IERC20;
@@ -19,7 +48,11 @@ contract WormholeMessenger is Ownable {
 
     mapping(uint16 => bytes32) public bridgeContracts;
 
-    constructor(address _wormhole, uint8 _targetChain, address _wormholeToken) Ownable(msg.sender) {
+    constructor(
+        address _wormhole,
+        uint8 _targetChain,
+        address _wormholeToken
+    ) Ownable(msg.sender) {
         wormhole = IWormhole(_wormhole);
         targetChain = _targetChain;
         wormholeToken = IERC20(_wormholeToken);
@@ -53,11 +86,20 @@ contract WormholeMessenger is Ownable {
         require(amount > 0, "Miktar sifirdan buyuk olmali");
 
         uint256 messageFee = wormhole.messageFee();
-        require(wormholeToken.balanceOf(msg.sender) >= amount + messageFee, "Yetersiz bakiye");
+        require(
+            wormholeToken.balanceOf(msg.sender) >= amount + messageFee,
+            "Yetersiz bakiye"
+        );
 
-        wormholeToken.safeTransferFrom(msg.sender, address(this), amount + messageFee);
-        // Değişiklik burada: safeApprove yerine approve kullanıyoruz
-        require(wormholeToken.approve(address(wormhole), messageFee), "Token onayi basarisiz");
+        wormholeToken.safeTransferFrom(
+            msg.sender,
+            address(this),
+            amount + messageFee
+        );
+        require(
+            wormholeToken.approve(address(wormhole), messageFee),
+            "Token onayi basarisiz"
+        );
 
         bytes memory payload = abi.encode(msg.sender, _hash, amount);
 
@@ -76,7 +118,10 @@ contract WormholeMessenger is Ownable {
         return wormhole.parseAndVerifyVM(vm) == IWormhole.VM_STATUS_VALID;
     }
 
-    function setBridgeContract(uint16 chainId, bytes32 bridgeContract) external onlyOwner {
+    function setBridgeContract(
+        uint16 chainId,
+        bytes32 bridgeContract
+    ) external onlyOwner {
         bridgeContracts[chainId] = bridgeContract;
         emit BridgeContractSet(chainId, bridgeContract);
     }
