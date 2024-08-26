@@ -39,6 +39,19 @@ zk-lokomotive is an advanced, zero-knowledge proof-based file transfer system de
 
 The zk-lokomotive system architecture is designed with modularity, scalability, and cross-chain interoperability at its core. Below is a detailed breakdown of the system components and their interactions:
 
+**Our system is built on three core components:**
+- Key Derivation Service (KDS): This service generates deterministic Curve25519 keypairs from BIP-39 mnemonics.
+- Cross-chain Identity Registry (CCIR): This serves as a decentralized identity and public key management system.
+- Encrypted File Storage (EFS): We use Arweave to provide decentralized and persistent file storage.
+
+**Our file transfer process works as follows:**
+- The user encrypts and uploads the file.
+- The file hash is transmitted to the target chain via Wormhole.
+- The recipient receives the file hash and verifies the signature.
+- The recipient reads and decrypts the file from Arweave.
+
+Our project is capable of operating across different blockchains such as Ethereum, Solana, and Sui, leveraging Wormhole for cross-chain functionality.
+
 ![ZKL-ARCH](https://github.com/user-attachments/assets/a987b7fc-fc0d-43c5-abbe-200604d9a407)
 
 ## Key Components
