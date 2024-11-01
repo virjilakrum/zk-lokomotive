@@ -374,8 +374,7 @@ As a user of the ZKL-Last platform, I want to securely transfer tokens and send 
 
 
 ### Contributors
-
-- [Baturalp Güvenç](https://github.com/virjilakrum) - Fullstack Blockchain Developer
+![Alt](https://repobeats.axiom.co/api/embed/8af38ce4e9ef72168a09aef4baed9f2aebe8c9be.svg "Repobeats analytics image")
 
 
 ## License
