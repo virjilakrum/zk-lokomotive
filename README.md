@@ -6,8 +6,6 @@
 </picture>
 <br/><br/>
 
-[Baturalp Güvenç](https://github.com/virjilakrum)
-
 # zk-lokomotive
 
 ## Introduction
