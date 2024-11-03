@@ -6,8 +6,6 @@
 </picture>
 <br/><br/>
 
-# zk-lokomotive
-
 ## Introduction
 
 [GitHub Repository](https://github.com/zk-Lokomotive/zkl-docs)
