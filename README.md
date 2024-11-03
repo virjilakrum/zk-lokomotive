@@ -1,12 +1,10 @@
 # zk-lokomotive: Zero-Knowledge Based Multichain File Transfer System
 
-<div align="center">
-  <img src="https://github.com/zk-Lokomotive/zk-lokomotive-sui/assets/158029357/e9a98533-894e-4902-9e8c-539d86d0e764" alt="logo" width="200"/>
-</div>
-
-[Baturalp Güvenç](https://github.com/virjilakrum)
-
-# zk-lokomotive
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./zkl-light.svg">
+  <img alt="ZKL logo" src="./zkl.svg">
+</picture>
+<br/><br/>
 
 ## Introduction
 
