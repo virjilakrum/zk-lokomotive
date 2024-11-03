@@ -4,55 +4,93 @@
   <img src="https://github.com/zk-Lokomotive/zk-lokomotive-sui/assets/158029357/e9a98533-894e-4902-9e8c-539d86d0e764" alt="logo" width="200"/>
 </div>
 
-## Table of Contents
+[Baturalp Güvenç](https://github.com/virjilakrum)
 
-- [Demo Videos](#demo)
-- [Introduction](#introduction)
-- [System Architecture](#system-architecture)
-- [Key Components](#key-components)
-- [Cryptographic Workflows](#cryptographic-workflows)
-- [Technical Implementation](#technical-implementation)
-- [Cross-Chain Functionality](#cross-chain-functionality)
-- [Getting Started](#getting-started)
-- [Benchmarks](#benchmarks)
-- [User Story](#user-story)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgements](#acknowledgements)
+# zk-lokomotive
 
-## Demo
----
-* NEW: [Avalanche-Sui Version Demo](https://youtu.be/WpamMm3GP8U)
----
-* OLD: [Solana-Solana Version Demo ](https://youtu.be/zspxfSJNXbs)
----
 ## Introduction
+
+[GitHub Repository](https://github.com/zk-Lokomotive/zkl-docs)
 
 zk-lokomotive is an advanced, zero-knowledge proof-based file transfer system designed to operate seamlessly across multiple blockchain networks, including EVM-compatible chains, Solana, and Sui. By leveraging state-of-the-art zero-knowledge cryptography, Arweave for decentralized storage, and Wormhole for cross-chain interoperability, zk-lokomotive provides an unparalleled solution for secure, private, and efficient file transfers in a trustless environment.
 
-### Author
+## Demos
 
-[Baturalp Güvenç](https://github.com/virjilakrum)
+- **Avalanche-Sui Demo:** [Watch on YouTube](https://www.youtube.com/watch?v=WpamMm3GP8U)
+- **Solana-Solana Demo:** [Watch on YouTube](https://www.youtube.com/watch?v=zspxfSJNXbs&feature=youtu.be)
 
+## Presentation
+
+[Download Presentation](https://drive.google.com/file/d/1-7DNFiOYlN1-er6wnDAVkYeQX_won9aD/view?usp=sharing)
+
+---
 
 ## System Architecture
 
-The zk-lokomotive system architecture is designed with modularity, scalability, and cross-chain interoperability at its core. Below is a detailed breakdown of the system components and their interactions:
+### Overview
 
-**Our system is built on three core components:**
-- Key Derivation Service (KDS): This service generates deterministic Curve25519 keypairs from BIP-39 mnemonics.
-- Cross-chain Identity Registry (CCIR): This serves as a decentralized identity and public key management system.
-- Encrypted File Storage (EFS): We use Arweave to provide decentralized and persistent file storage.
+Our architecture consists of three layers, with the platform in the middle and users at the edges.
 
-**Our file transfer process works as follows:**
-- The user encrypts and uploads the file.
-- The file hash is transmitted to the target chain via Wormhole.
-- The recipient receives the file hash and verifies the signature.
-- The recipient reads and decrypts the file from Arweave.
+![zk-Lokomotive Module Legend](https://github.com/zk-Lokomotive/zkl-docs/blob/main/diagrams/zkl%20module%20legend%20light.png)
 
-Our project is capable of operating across different blockchains such as Ethereum, Solana, and Sui, leveraging Wormhole for cross-chain functionality.
+We offer enterprise-level solutions where the platform is fully on-chain for unmatched privacy potential. With the use of a decentralized Cross-Chain Identity Registry (CCIR), we provide identity proving and account management on the blockchain, eliminating any centralized layers where data can be tampered with.
 
-![ZKL-ARCH](https://github.com/user-attachments/assets/a987b7fc-fc0d-43c5-abbe-200604d9a407)
+**Enterprise Deployment Module Legend**
+
+![zk-Lokomotive Enterprise Module Legend](https://github.com/zk-Lokomotive/zkl-docs/blob/main/diagrams/zkl%20enterprise%20module%20legend%20light.png)
+
+### Elements
+
+Our infrastructure consists of three main modules, with the JavaScript/Svelte web application comprising four submodules.
+
+#### Modules
+
+1. **JavaScript/Svelte Web Application (Client)**
+
+   The client is the user-facing module of zk-lokomotive, allowing users to send and receive files by linking their wallet accounts.
+
+   **Submodules:**
+
+   - **aus**
+
+     Provides functionality for communicating with distributed file chains and decentralized networks like IPFS. Currently, we utilize Arweave.
+
+   - **roadhog**
+
+     Interfaces with various blockchain networks used in our platform to perform specific objectives by calling or querying smart contracts, Solana programs, etc.
+
+   - **crypto**
+
+     Performs cryptographic operations. We support the Elliptic Curve Integrated Encryption Scheme (ECIES) through the `ecies/rs-wasm` package, which consumes the Rust crate `eciesrs`.
+
+   - **kds**
+
+     Generates pseudo-random mnemonics using BIP-39 that are then derived into elliptic curve key pairs.
+
+2. **Platform-Level Components**
+
+   - **Cross-Chain Identity Registry (CCIR)**
+
+     The CCIR serves as a decentralized identity and public key management system. It links wallet addresses to their elliptic public keys. On the CCIR, wallet users can only add or modify information about themselves after proving ownership of the private key to that wallet account. Everyone is allowed to query from a public EC key to the wallet address or vice versa.
+
+     - [GitHub Repository](https://github.com/zk-Lokomotive/zkl-ccir)
+
+   - **Arweave**
+
+     We use Arweave for decentralized and persistent file storage, providing a decentralized file storage solution.
+
+   - **Inbox**
+
+     Inboxes are on-chain and network-specific implementations. The client calls these using the `roadhog` submodule when querying for incoming files or sending a file.
+
+     The inbox can be logically defined as:
+
+     ```plaintext
+     type message = { q_e: string; e_plink: string; uPK: string; }
+     let inbox : message StringMap.t ref = ref StringMap.empty
+     ```
+
+---
 
 ## Key Components
 
@@ -60,247 +98,156 @@ Our project is capable of operating across different blockchains such as Ethereu
 
 The KDS is a crucial component that provides:
 
-- A deterministic Curve25519 keypair generator derived from BIP-39 mnemonics
-- A pseudo-random BIP-39 mnemonic generator utilizing the web-bip-39 package
+- A deterministic Curve25519 key pair generator derived from BIP-39 mnemonics.
+- A pseudo-random BIP-39 mnemonic generator utilizing the `web-bip-39` package.
 
 This service ensures consistent and secure key generation across different platforms and devices.
 
-### 2. Cross-chain Identity Registry (CCIR)
+- [NPM Package](https://www.npmjs.com/package/@zklx/kds)
+
+### 2. Cross-Chain Identity Registry (CCIR)
 
 The CCIR serves as a decentralized identity and public key management system. It allows:
 
-- Lookup of identities across different blockchain networks
-- Retrieval of corresponding public keys for secure communications
+- Lookup of identities across different blockchain networks.
+- Retrieval of corresponding public keys for secure communications.
+
+- [GitHub Repository](https://github.com/zk-Lokomotive/zkl-ccir)
 
 ### 3. Encrypted File Storage (EFS)
 
 The EFS is a distributed storage solution that:
 
-- Allows recipients to retrieve encrypted payloads uploaded for them
-- Utilizes Arweave for decentralized and persistent file storage
-- Ensures data privacy through encryption before storage
+- Allows recipients to retrieve encrypted payloads uploaded for them.
+- Utilizes Arweave for decentralized and persistent file storage.
+- Ensures data privacy through encryption before storage.
 
 ### 4. Client
 
 The client component is responsible for:
 
-- Generating encrypted payloads for recipients
-- Retrieving recipient public keys via the CCIR
-- Initiating the file transfer process
+- Generating encrypted payloads for recipients.
+- Retrieving recipient public keys via the CCIR.
+- Initiating the file transfer process.
 
-## Cryptographic Workflows
+### 5. Crypto
 
-### Sending a File
+Provides cryptographic functions for encryption and decryption of both binary data and strings using public and private keys. It utilizes `ecies-wasm` for the underlying cryptographic operations.
 
-The process of sending an encrypted file involves several cryptographic operations to ensure security and privacy. Below is a detailed workflow:
+- [NPM Package](https://www.npmjs.com/package/@zklx/crypto)
+
+### 6. Wormhole Messaging Module SDK
+
+The zk-lokomotive Ethereum-Solana Wormhole Messaging module facilitates secure and efficient cross-chain communication between Ethereum and Solana blockchains. This implementation leverages modern ES6+ standards to provide a robust, maintainable, and highly interoperable solution for cross-chain messaging needs. By utilizing the Wormhole protocol as its foundation, this module ensures reliable message delivery while maintaining the security guarantees essential for cross-chain operations.
+
+- [GitHub Repository](https://github.com/zk-Lokomotive/zkl-eswm-ES6)
+
+**Why ES6?**
+
+Our decision to implement this module using ES6+ standards stems from several key considerations:
+
+- **Modern Development Practices:** ES6 introduces significant improvements in code organization through modules.
+- **Enhanced Type Safety:** Integration with TypeScript.
+- **Better Asynchronous Handling:** Promises and async/await patterns are crucial in blockchain development.
+- **Code Reliability and Maintainability:** Essential for cross-chain operations.
+- **Expressive and Concise Code:** Without sacrificing readability or performance.
+
+---
+
+## Cryptographic Activities
+
+### System Elements
+
+The system elements are described and discussed in the zk-lokomotive System Architecture document.
+
+#### 1. Key Derivation Service (KDS)
+
+Provides:
+
+- A deterministic secp256k1 key pair generator from BIP-39 mnemonics.
+- A pseudo-random BIP-39 mnemonic generator through the `web-bip-39` package.
+
+#### 2. Cross-Chain Identity Registry (CCIR)
+
+Allows:
+
+- Lookup of identities and their corresponding public keys across different blockchain networks.
+
+#### 3. Encrypted File Storage (EFS)
+
+A distributed storage solution that allows recipients to retrieve payloads that were uploaded for them.
+
+#### 4. Client
+
+The sender generates the encrypted payload to be sent to the receiver, whose public key is retrieved via the CCIR.
+
+### Workflows
 
 #### Definitions
 
-| Symbol | Description |
-|--------|-------------|
-| K_r    | Recipient's public key on Curve25519 |
-| K_e    | A symmetric key derived for the file to be sent (256 bits) |
-| E(K_e) | The symmetric key, encrypted using ECIES |
-| F      | The file contents, in plaintext |
-| F_c    | The file contents, in ciphertext |
-| IV     | The initialization vector required for AES-GCM-256 |
-| P      | The payload, what is sent to the recipient |
+- **Q<sub>r</sub>:** Recipient’s public key on curve secp256k1.
+- **G:** The generator point on curve secp256k1.
+- **Z:** A symmetric key derived for the file to be sent, the shared secret.
+- **F<sub>c</sub>:** The file contents, in plaintext.
+- **F<sub>m</sub>:** File's metadata (name, etc.).
+- **F:** The intermediate file format, ready to be encrypted.
+- **F<sub>c</sub>:** The file contents, in ciphertext.
+- **IV:** The initialization vector required for AES-GCM-256.
+- **P:** The payload, what is sent to the recipient.
 
-#### Workflow Steps
+The intermediate file format **F** is as follows:
 
-1. Retrieve the recipient's public key (K_r) from the CCIR.
-2. Generate a random symmetric key (K_e) for the file (F).
-3. Encrypt the file (F) using AES-GCM-256 with the encryption key (K_e) and a randomly generated initialization vector (IV), resulting in ciphertext (F_c).
-4. Encrypt the symmetric key (K_e) using ECIES, resulting in E(K_e).
-5. Create the payload (P) by concatenating F_c, IV, and E(K_e).
-6. Upload the payload (P) to the Encrypted File Storage (EFS).
+| Bytes           | Content                             | Length in Bytes               |
+|-----------------|-------------------------------------|-------------------------------|
+| [0]..4          | Length of **F<sub>m</sub>**         | 4 bytes                       |
+| [4]..1024       | **F<sub>m</sub>**                   | 1020 bytes (255 * 4 bytes)    |
+| [1024]...       | **F<sub>c</sub>**                   | Variable                      |
 
-### Key Encryption through ECIES
+#### Workflow: Sending a File
 
-Elliptic Curve Integrated Encryption Scheme (ECIES) is used for secure key exchange. The process involves:
+1. Retrieve **Q<sub>r</sub>** from the CCIR.
+2. Generate an ephemeral key pair, **Q<sub>e</sub>** and **d<sub>e</sub>**.
+3. Compute the shared secret **Z** = **d<sub>e</sub>** × **Q<sub>r</sub>**.
+4. Encrypt the intermediate file **F** using AES-GCM-256 with encryption key **Z** and a randomly generated initialization vector, **IV**.
+5. Create the payload **P** by concatenating **Q<sub>e</sub>**, **IV**, **MAC**, and **F<sub>e</sub>**.
+6. Upload the payload **P** to the Encrypted File Storage (EFS).
 
-1. Generate an ephemeral key pair on Curve25519.
-2. Perform Diffie-Hellman key exchange with the recipient's public key.
-3. Derive a shared secret using HKDF-SHA256.
-4. Encrypt the symmetric key using AES-GCM with the derived shared secret.
+> **Note:** The MAC in the payload **P** at step 5 is a result of using AES-GCM-256, which is selected in the ECIES implementation in the Rust crate we consume through the `ecies/rs-wasm` package.
 
-## Technical Implementation 🏗️
+---
 
-### Wormhole Contract for File Transfer (Solidity)
+## Diagrams
 
-```solidity
-pragma solidity ^0.8.13;
+[View Diagrams](https://github.com/zk-Lokomotive/zkl-docs/tree/main/diagrams)
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "./interfaces/IWormhole.sol";
+## PDFs
 
-contract WormholeMessenger is Ownable {
-    using SafeERC20 for IERC20;
+[View PDFs](https://github.com/zk-Lokomotive/zkl-docs/tree/main/pdfs)
 
-    IWormhole public wormhole;
-    uint16 public targetChain;
-    uint256 public nextSequence;
-    IERC20 public wormholeToken;
-
-    event HashSent(address indexed sender, bytes32 hash, uint64 sequence);
-    event BridgeContractSet(uint16 chainId, bytes32 newBridgeContract);
-
-    mapping(uint16 => bytes32) public bridgeContracts;
-
-    constructor(address _wormhole, uint16 _targetChain, address _wormholeToken) {
-        wormhole = IWormhole(_wormhole);
-        targetChain = _targetChain;
-        wormholeToken = IERC20(_wormholeToken);
-    }
-```
-
-### Arweave Integration (JavaScript)
-
-```javascript
-'use client';
-
-import { useState } from 'react';
-import Arweave from 'arweave';
-
-const arweave = Arweave.init({
-  host: 'arweave.net',
-  port: 443,
-  protocol: 'https',
-});
-
-export default function FileUpload({ onUpload, walletKey }) {
-  const [file, setFile] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-
-  const handleUpload = async () => {
-    if (!file || !walletKey) return;
-
-    setLoading(true);
-    const reader = new FileReader();
-    reader.readAsArrayBuffer(file);
-
-    reader.onloadend = async () => {
-      const data = new Uint8Array(reader.result);
-      const transaction = await arweave.createTransaction({ data }, walletKey);
-
-      transaction.addTag('Content-Type', file.type);
-
-      await arweave.transactions.sign(transaction, walletKey);
-      const response = await arweave.transactions.post(transaction);
-
-      if (response.status === 200) {
-        const txId = transaction.id;
-        const imageUrl = `https://arweave.net/${txId}`;
-        onUpload(imageUrl);
-      } else {
-        console.error('Failed to upload file to Arweave');
-      }
-
-      setLoading(false);
-    };
-  };
-
-  return (
-    <div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload} disabled={!file || loading}>
-        {loading ? 'Uploading...' : 'Upload to Arweave'}
-      </button>
-    </div>
-  );
-}
-```
+---
 
 ## Cross-Chain Functionality
 
 zk-lokomotive leverages Wormhole for seamless cross-chain file transfers. Here's an overview of the process:
 
-1. **File Tokenization**: The encrypted file is tokenized on the source chain.
-2. **Wormhole Bridge**: The tokenized file is transferred through Wormhole's bridge.
-3. **Cross-Chain Verification**: ZK proofs are verified on the destination chain.
-4. **File Retrieval**: The recipient retrieves and decrypts the file using their private key.
+1. **File Tokenization:** The encrypted file is tokenized on the source chain.
+2. **Wormhole Bridge:** The tokenized file is transferred through Wormhole's bridge.
+3. **Cross-Chain Verification:** Zero-Knowledge proofs are verified on the destination chain.
+4. **File Retrieval:** The recipient retrieves and decrypts the file using their private key.
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v14+)
-- Rust (latest stable) or `nightly`
-- Solana CLI
-- Anchor Framework
-- Ethereum development environment (Hardhat or Truffle)
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/zk-Lokomotive/zk-lokomotive.git
-   cd zk-lokomotive
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Set up Solana environment:
-   ```bash
-   sh -c "$(curl -sSfL https://release.solana.com/v1.18.4/install)"
-   solana --version
-   ```
-
-4. Install Anchor:
-   ```bash
-   cargo install --git https://github.com/coral-xyz/anchor anchor-cli --locked
-   anchor --version
-   ```
-
-5. Build the project:
-   ```bash
-   cd tokenswap_contract
-   anchor build
-   ```
-
-6. Run tests:
-   ```bash
-   anchor test
-   ```
-
-## Benchmarks
-
-To run cryptographic benchmarks:
-
-```bash
-git clone https://github.com/briansmith/crypto-bench && cd crypto-bench
-cargo update && cargo +nightly bench
-```
-
-| Implementation | ECDH (Suite B) key exchange |
-|----------------|:---------------------------:|
-| _ring_         |     :white_check_mark:      |
-| rust-crypto    |                             |
-| rust-nettle    |                             |
-| rust-openssl   |                             |
-| sodiumoxide    |                             |
-| Windows CNG    |                             |
-| Common Crypto  |                             |
+Our project operates across different blockchains such as Ethereum, Solana, and Sui, leveraging Wormhole for cross-chain functionality.
 
 ---
 
 ## User Story
 
-As a user of the ZKL-Last platform, I want to securely transfer tokens and send messages between Ethereum and Solana blockchains using Wormhole's cross-chain interoperability protocol.
+As a user of the zk-lokomotive platform, I want to securely transfer tokens and send messages between Ethereum and Solana blockchains using Wormhole's cross-chain interoperability protocol.
 
-### Acceptance Criteria:
+### Acceptance Criteria
 
-1. Ethereum to Solana Transfer:
-   - I can connect my Ethereum wallet (e.g., MetaMask) to the ZKL-Last dApp.
+1. **Ethereum to Solana Transfer:**
+
+   - I can connect my Ethereum wallet (e.g., MetaMask) to the zk-lokomotive dApp.
    - I can select an ERC20 token and specify an amount to transfer.
    - I can enter a Solana recipient address.
    - I can include an optional message with my transfer.
@@ -308,8 +255,9 @@ As a user of the ZKL-Last platform, I want to securely transfer tokens and send 
    - A Verifiable Action Approval (VAA) is generated by the Guardian network.
    - The transfer is completed on Solana, with the recipient receiving equivalent SPL tokens.
 
-2. Solana to Ethereum Transfer:
-   - I can connect my Solana wallet (e.g., Phantom) to the ZKL-Last dApp.
+2. **Solana to Ethereum Transfer:**
+
+   - I can connect my Solana wallet (e.g., Phantom) to the zk-lokomotive dApp.
    - I can select an SPL token and specify an amount to transfer.
    - I can enter an Ethereum recipient address.
    - I can include an optional message with my transfer.
@@ -317,60 +265,31 @@ As a user of the ZKL-Last platform, I want to securely transfer tokens and send 
    - A VAA is generated by the Guardian network.
    - The transfer is completed on Ethereum, with the recipient receiving equivalent ERC20 tokens.
 
-3. Message Passing:
+3. **Message Passing:**
+
    - I can send arbitrary messages between Ethereum and Solana without token transfers.
    - Messages are securely transmitted and verified using Wormhole's VAA mechanism.
 
-4. Transaction Monitoring:
+4. **Transaction Monitoring:**
+
    - I can view the status of my cross-chain transactions in real-time.
    - The dApp shows me when the VAA is generated and when it's redeemed on the target chain.
 
-5. Security Features:
+5. **Security Features:**
+
    - All transactions require my explicit approval through wallet signatures.
    - The dApp uses Wormhole's consistency levels to ensure finality before completing transfers.
    - I receive clear warnings about the irreversibility of cross-chain transactions.
 
-6. Error Handling:
+6. **Error Handling:**
+
    - If a transaction fails at any stage, I receive a clear error message explaining the issue.
    - The dApp provides guidance on how to resolve common errors (e.g., insufficient gas, network congestion).
 
-## Technical Requirements:
+## Audit & Security 
 
-1. Smart Contract Integration:
-   - Deploy ZKL-Last contracts on Ethereum that interact with Wormhole's core bridge contract.
-   - Implement a Solana program that interacts with Wormhole's core bridge program.
-   - Use Wormhole's `publishMessage` function to emit cross-chain messages.
+Our team working with Ironnode Security: [https://www.ironnode.io/]
 
-2. Token Bridge Usage:
-   - Integrate Wormhole's token bridge for asset transfers between chains.
-   - Implement token locking on the source chain and minting on the target chain.
-
-3. VAA Handling:
-   - Implement VAA retrieval from Wormhole's Guardian network.
-   - Verify VAA signatures using Wormhole's `parseAndVerifyVM` function.
-
-4. Relayer Integration:
-   - Implement a relayer service to automatically submit VAAs to the target chain.
-   - Use Wormhole's Generic Relayer for standard transfers.
-   - Implement a specialized relayer for custom logic if required.
-
-5. Wormhole Connect Integration:
-   - Integrate Wormhole Connect UI components for a seamless user experience.
-   - Customize Wormhole Connect to fit ZKL-Last's branding and specific requirements.
-
-6. Chain-Specific Implementations:
-   - For Ethereum: Use ethers.js for contract interactions and transaction signing.
-   - For Solana: Use @solana/web3.js and @project-serum/anchor for program interactions.
-
-7. Security Considerations:
-   - Implement proper access controls in smart contracts and Solana programs.
-   - Use Wormhole's emitter filtering to ensure messages are only accepted from trusted sources.
-   - Implement replay protection to prevent double-spending attacks.
-
-8. Testing and Auditing:
-   - Develop comprehensive test suites for both Ethereum and Solana components.
-   - Conduct thorough security audits of all smart contracts and programs.
-   - Perform end-to-end testing of the entire cross-chain transfer process.
 
 
 ### Contributors
@@ -388,7 +307,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 - [Arweave](https://www.arweave.org/) for decentralized storage
 - [Solana](https://solana.com/) for high-performance blockchain infrastructure
 - [Ethereum](https://ethereum.org/) for smart contract capabilities
-- [Celestia](https://celestia.org/) for data availability solutions
 
 ---
 
