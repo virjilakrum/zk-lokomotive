@@ -1,0 +1,109 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.yarn/cache
+.yarn/unplugged
+.yarn/install-state.gz
+.pnp.*
+
+# Build outputs
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# Testing
+coverage/
+.nyc_output/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IDE - JetBrains
+.idea/
+*.iml
+*.iws
+.idea_modules/
+
+# IDE - Eclipse
+.project
+.classpath
+.settings/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Operating System
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Optional cache directories
+.npm/
+.eslintcache
+.stylelintcache
+
+# TypeScript specific
+*.tsbuildinfo
+.tsc/
+tsconfig.tsbuildinfo
+
+# Debug logs
+debug.log
+debug.log.*
+
+# Temporary files
+*.swp
+*.swo
+*~
+
+# Blockchain specific
+.accounts/
+.contracts/
+artifacts/
+cache/
+typechain/
+typechain-types/
+
+# Solidity coverage
+coverage/
+coverage.json
+
+# Hardhat
+cache/
+artifacts/
+
+# Foundry
+out/
+cache/
+broadcast/
+
+# Project specific
+keys/
+.secret
+config.local.js
+config.local.ts
+
+# Generated documentation
+docs/generated/

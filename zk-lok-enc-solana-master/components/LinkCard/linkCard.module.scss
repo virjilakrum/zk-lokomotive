@@ -1,0 +1,18 @@
+.linkCard {
+    margin: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px #eaeaea;
+    padding:50px;
+    text-align: center;
+
+    svg {
+        font-size: 70px;
+        width: 70px;
+    }
+
+    @media (max-width: 500px) {
+        margin: 0;
+        margin-top: 40px;
+        padding: 25px;
+    }
+}
