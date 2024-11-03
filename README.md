@@ -414,25 +414,28 @@ Solana, Ethereum, Sui, and Aptos ecosystems, fulfilling the demand for secure, p
 ![GakzeyUWAAATGOI](https://github.com/user-attachments/assets/8303a43b-e9a2-4886-975e-5ab8fae47f8f)
 
 **1- Baturalp Güvenç (Blockchain Developer) - Computer Engineer**
-**Linkedin:** https://www.linkedin.com/in/baturalpguvenc/
-**Github:** https://github.com/virjilakrum
-**X:** https://x.com/baturalpguvnc
-**Mail:** baturalp@zk-lokomotive.xyz
-**Medium:** https://medium.com/@baturalpguvenc
-**Telegram:** guattaridante
+
+- **Linkedin:** https://www.linkedin.com/in/baturalpguvenc/
+- **Github:** https://github.com/virjilakrum
+- **X:** https://x.com/baturalpguvnc
+- **Mail:** baturalp@zk-lokomotive.xyz
+- **Medium:** https://medium.com/@baturalpguvenc
+- **Telegram:** guattaridante
 
 **2- Ferit Yiğit Balaban (System Architecture Specialist) - Computer Engineer**
-**Website:** https://fybx.dev/
-**Linkedin: **https://www.linkedin.com/in/fybx/
-**Github:** https://github.com/fybx
-**X:** https://x.com/fybalaban
-M**ail:** fybalaban@fybx.dev
-**Telegram:** fybalaban
+
+- **Website:** https://fybx.dev/
+- **Linkedin** https://www.linkedin.com/in/fybx/
+- **Github:** https://github.com/fybx
+- **X:** https://x.com/fybalaban
+- **Mail:** fybalaban@fybx.dev
+- **Telegram:** fybalaban
 
 **3- Salih Eryılmaz (Product Manager) - Management Information Systems** 
-**Linkedin:** https://www.linkedin.com/in/salih-eryilmaz/
-**Mail:** salih.eryilmaz@outlook.com
-**Telegram:** slheryilmaz
+
+- **Linkedin:** https://www.linkedin.com/in/salih-eryilmaz/
+- **Mail:** salih.eryilmaz@outlook.com
+- **Telegram:** slheryilmaz
 
 
 ## License
@@ -449,21 +452,17 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ---
 
-<div align="center">
-  <img src="https://github.com/zk-Lokomotive/zk-lokomotive/assets/158029357/1da98901-0a85-4ff9-b6ce-8e22b142efd8" alt="wormhole tweet" width="400"/>
-</div>
-
 ### Awards and Recognitions of zk-lokomotive
 
-Movement Labs Battle of Olympus Hackathon (Finalist🏆) | Oct 2024
-Encode Wormhole Global Hackathon Best Integration on an Existing Project (Winner🥉) | Oct 2024
-Wormhole xGrant (Project Grant) | Jun 2024
-Superteam Solana Grant (Project Grant) Jun 2024
-Sui Overflow Local Track (Winner🥇) | May 2024
-EDCON Japan (Finalist🏆) | May 2024
-Solana Global Renaissance Hackathon Multichain Track (Winner🥇) | April 2024
-Solana Demoday (Winner🥈) | March 2024
-Solana Mini Hackathon (Winner🥇) | March 2024
+* Movement Labs Battle of Olympus Hackathon (Finalist🏆) | Oct 2024
+* Encode Wormhole Global Hackathon Best Integration on an Existing Project (Winner🥉) | Oct 2024
+* Wormhole xGrant (Project Grant) | Jun 2024
+* Superteam Solana Grant (Project Grant) Jun 2024
+* Sui Overflow Local Track (Winner🥇) | May 2024
+* EDCON Japan (Finalist🏆) | May 2024
+* Solana Global Renaissance Hackathon Multichain Track (Winner🥇) | April 2024
+* Solana Demoday (Winner🥈) | March 2024
+* Solana Mini Hackathon (Winner🥇) | March 2024
 
 ---
 
