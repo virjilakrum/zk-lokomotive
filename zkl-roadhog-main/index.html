@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>ZKL Roadhog Demo</title>
+</head>
+
+<body>
+  <script src="dist/bundle.js"></script>
+  <script>
+    window.addEventListener('load', function () {
+      document.getElementById('metamask').disabled = false;
+      document.getElementById('phantom').disabled = false;
+    });
+  </script>
+  <h1>ZKL Roadhog Demo</h1>
+  <button disabled id="metamask" onclick="signIn('ethereum')">sign in with metamask</button>
+  <button disabled id="phantom" onclick="signIn('solana')">sign in with solana</button>
+</body>
+
+</html>

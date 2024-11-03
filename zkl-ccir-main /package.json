@@ -1,0 +1,26 @@
+{
+  "name": "zkl-ccir",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpx nodemon ./index.js"
+  },
+  "keywords": [],
+  "author": "Yigid BALABAN <fyb@fybx.dev>",
+  "license": "AGPL-3.0-only",
+  "dependencies": {
+    "bs58": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "elliptic": "^6.5.7",
+    "express": "^4.21.0",
+    "mongoose": "^8.7.0",
+    "morgan": "^1.10.0",
+    "siwe": "^2.3.2",
+    "tweetnacl": "^1.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}

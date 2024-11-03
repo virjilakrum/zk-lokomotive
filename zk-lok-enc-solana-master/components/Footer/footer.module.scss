@@ -1,0 +1,30 @@
+.footer {
+    height: 90px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    padding: 20px 50px 20px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    box-sizing: border-box;
+    pointer-events: none;
+
+    a:not(.siteLogo) {
+        font-size:25px;
+        pointer-events: all;
+        margin-right:20px;
+    }
+
+    svg {
+        height: 30px;
+    }
+
+    img {
+        height:50px;
+    }
+
+    @media (max-width: 500px) {
+        padding: 0px 15px 0px 15px;
+    }
+}

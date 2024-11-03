@@ -1,0 +1,3 @@
+[submodule "zkl-kds"]
+	path = zkl-kds
+	url = https://git.fybx.dev/fyb/zkl-kds

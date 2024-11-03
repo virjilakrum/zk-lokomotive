@@ -1,0 +1,108 @@
+.uploadBox {
+  min-height: 40vh;
+  max-width: 840px;
+  margin: 0 auto;
+  background: #eee;
+  border-radius: 10px;
+  width: -moz-available;
+  width: stretch;
+  height: auto;
+  transition: background 0.4s cubic-bezier(0.83, 0, 0.17, 1),
+    border-radius 0.4s cubic-bezier(0.83, 0, 0.17, 1);
+
+  &.active {
+    background: #d5d5d5;
+    border-radius: 50px;
+  }
+
+  &:after {
+    content: "Click or drag to add files";
+    font-size: 20px;
+    color: gray;
+    top: 42%;
+    position: absolute;
+    left: 50%;
+    display: block;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    &:after {
+      border-bottom: 3px solid grey;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    justify-content: space-between;
+  }
+}
+.fileInput {
+  display: none;
+}
+.file {
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  width: 100px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #d9d9d9;
+  height: min-content;
+  background: #eee;
+  z-index: 2;
+  animation: expand 0.4s ease;
+
+  svg {
+    font-size: 70px;
+    width: 50px;
+  }
+
+  .filename {
+    display: block;
+    font-size: 12px;
+    margin-top: 10px;
+    line-break: anywhere;
+  }
+
+  @media (max-width: 600px) {
+    width: 80px;
+  }
+}
+.loadingBar {
+  position: fixed;
+  width: 0vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: #65ffcc;
+  z-index: 99;
+
+  .loadingPercent {
+    margin-top: 45vh;
+    font-size: 70px;
+  }
+}
+.uploadButton {
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.github {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes expand {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
